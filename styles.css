@@ -1,0 +1,709 @@
+.stat-value-input {
+    width: 45px;
+    height: 22px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #3b5ca8;
+    padding: 2px;
+}.pokemon-stats-container {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.stats-column {
+    width: 48%;
+}
+
+.stat-entry {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.stat-name {
+    font-weight: bold;
+}
+
+.stat-value {
+    color: #3b5ca8;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    color: #3b5ca8;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #3b5ca8;
+    padding-bottom: 10px;
+}
+
+.pokemon-builder-container {
+    width: 75%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-right: 2px solid #3b5ca8;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 15px;
+    scrollbar-width: thin;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-space {
+    width: 25%;
+    padding: 15px;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+.pokemon-slot {
+    flex: 0 0 250px;
+    margin-right: 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-image {
+    width: 120px;
+    height: 120px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Benutzerdefiniertes Dropdown */
+.custom-select-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.custom-select-selected {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.custom-select-selected:hover {
+    background-color: #f5f5f5;
+}
+
+.selected-sprite {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.custom-select-options {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-select-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.custom-select-option:hover, .custom-select-option.highlighted {
+    background-color: #f0f0f0;
+}
+
+/* Bei Hervorhebung eine stärkere Farbe als bei Hover */
+.custom-select-option.highlighted {
+    background-color: #e0e0e0;
+    border-left: 3px solid #3b5ca8;
+}
+
+.option-content {
+    display: flex;
+    align-items: center;
+}
+
+.option-sprite {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.option-text {
+    flex-grow: 1;
+}
+
+/* Scrollbar für das Dropdown */
+.custom-select-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-select-options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.pokemon-details-container {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemon-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.pokemon-name {
+    font-weight: bold;
+    text-align: left;
+}
+
+.pokemon-number {
+    color: #666;
+    font-size: 12px;
+}
+
+.pokemon-level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 10px;
+}
+
+.pokemon-level-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pokemon-level-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.pokemon-level-input {
+    width: 50px;
+    height: 28px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.loading {
+    text-align: center;
+    margin: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Würfel-Styling */
+.pokemon-dice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.dice {
+    position: relative;
+    background-color: #3b5ca8;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dice.legendary {
+    background-color: #d4af37; /* Gold für legendäre/mystische Pokémon */
+}
+
+/* Tooltip für BST-Info */
+.dice-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.dice-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.dice-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pokemon-image-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.pokemon-image {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.pokemon-types {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.type-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles für Attacken-Container */
+.pokemon-moves-container {
+    width: 100%;
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.moves-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.moves-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.move-slot {
+    width: 100%;
+}
+
+/* Anpassungen für Attacken-Dropdown */
+.move-select-container {
+    margin-bottom: 0;
+}
+
+.move-select-selected {
+    font-size: 13px;
+    padding: 6px;
+}
+
+.move-select-options {
+    max-height: 250px;
+    z-index: 101; /* Höher als die Pokémon-Dropdowns */
+}
+
+/* Trennlinien im Dropdown */
+.move-divider {
+    background-color: #f5f5f5;
+    padding: 5px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    pointer-events: none;
+}
+
+/* Attacken-Optionen nach Typ einfärben */
+.move-select-option {
+    border-left: 3px solid transparent;
+}
+
+/* Styling für den Header mit Titel und Button */
+.moves-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Styling für den Neues-Moveset Button */
+.new-moveset-button {
+    background-color: #3b5ca8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.new-moveset-button:hover {
+    background-color: #2a4a8a;
+}
+
+.new-moveset-button:active {
+    background-color: #1b3a7a;
+}
+
+.new-moveset-button.disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+/* Farbzuweisungen für Attackentypen (Linkrand) */
+.move-select-option.move-type-normal { border-left-color: #A8A878; }
+.move-select-option.move-type-fire { border-left-color: #F08030; }
+.move-select-option.move-type-water { border-left-color: #6890F0; }
+.move-select-option.move-type-grass { border-left-color: #78C850; }
+.move-select-option.move-type-electric { border-left-color: #F8D030; }
+.move-select-option.move-type-ice { border-left-color: #98D8D8; }
+.move-select-option.move-type-fighting { border-left-color: #C03028; }
+.move-select-option.move-type-poison { border-left-color: #A040A0; }
+.move-select-option.move-type-ground { border-left-color: #E0C068; }
+.move-select-option.move-type-flying { border-left-color: #A890F0; }
+.move-select-option.move-type-psychic { border-left-color: #F85888; }
+.move-select-option.move-type-bug { border-left-color: #A8B820; }
+.move-select-option.move-type-rock { border-left-color: #B8A038; }
+.move-select-option.move-type-ghost { border-left-color: #705898; }
+.move-select-option.move-type-dragon { border-left-color: #7038F8; }
+.move-select-option.move-type-dark { border-left-color: #705848; }
+.move-select-option.move-type-steel { border-left-color: #B8B8D0; }
+.move-select-option.move-type-fairy { border-left-color: #EE99AC; }
+
+
+/* Styling für ausgewählte Attacken */
+.selected-move {
+    display: flex;
+    align-items: center;
+}
+
+.move-type-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+
+/* Farben für die Typ-Indikatoren der ausgewählten Attacken */
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-grass { background-color: #78C850; }
+.type-electric { background-color: #F8D030; }
+.type-ice { background-color: #98D8D8; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-dark { background-color: #705848; }
+.type-steel { background-color: #B8B8D0; }
+.type-fairy { background-color: #EE99AC; }
+
+/* Hervorgehobene Move-Option */
+.move-select-option.highlighted {
+    background-color: #e0e0e0;
+    border-left-width: 5px;
+}
+
+/* Anpassungen für bessere Lesbarkeit */
+.move-select-option {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+/* Farben für die verschiedenen Pokemon-Typen */
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-grass { background-color: #78C850; }
+.type-electric { background-color: #F8D030; }
+.type-ice { background-color: #98D8D8; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-dark { background-color: #705848; }
+.type-steel { background-color: #B8B8D0; }
+.type-fairy { background-color: #EE99AC; }
+
+/* EXP Gain Container Styling */
+.exp-gain-container {
+    width: 100%;
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.exp-gain-container.hidden {
+    display: none;
+}
+
+/* EXP Header mit Label und Duplizieren-Button */
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.exp-gain-label {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.exp-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex;
+    margin-bottom: 10px;
+}
+
+.exp-gain-input {
+    width: 70px;
+    height: 28px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #3b5ca8;
+}
+
+.exp-multiplier-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.exp-multiplier-button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    flex: 1;
+    min-width: 90px;
+}
+
+.exp-multiplier-button:hover {
+    background-color: #d0d0d0;
+}
+
+.exp-multiplier-button.active {
+    background-color: #3b5ca8;
+    color: white;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+    .exp-multiplier-container {
+        flex-direction: column;
+    }
+    
+    .exp-multiplier-button {
+        width: 100%;
+    }
+}
+
+/* Hervorhebung der ausgewählten Option */
+.team-select-options .custom-select-option.highlighted {
+    background-color: #e0e0e0;
+    border-left: 3px solid #3b5ca8;
+}
+
+/* Hover-Effekt für Optionen */
+.team-select-options .custom-select-option:hover {
+    background-color: #f0f0f0;
+}
+
+/* Z-Index für Team-Dropdown-Menüs, damit sie über anderen Elementen erscheinen */
+.team-select-options {
+    max-height: 250px;
+    z-index: 200;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+/* Scrollbar-Styling für Team-Dropdowns */
+.team-select-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.team-select-options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.team-select-options::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.team-select-options::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
+/* Container für die Buttons */
+.button-container {
+    display: flex;
+    gap: 8px;
+}
+
+/* Style für beide Buttons */
+.duplicate-button, .randomize-button {
+    background-color: #3b5ca8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.duplicate-button:hover, .randomize-button:hover {
+    background-color: #2a4a8a;
+}
+
+.duplicate-button:active, .randomize-button:active {
+    background-color: #1b3a7a;
+    transform: scale(0.98);
+}
+
+/* Unterschiedliche Farben für den Randomize-Button */
+.randomize-button {
+    background-color: #5a8c3b; /* Grün für Randomize */
+}
+
+.randomize-button:hover {
+    background-color: #4a7c2b;
+}
+
+.randomize-button:active {
+    background-color: #3a6c1b;
+}
+
+/* Animation für randomisierte Stats */
+.stats-randomized {
+    animation: highlight-stats 0.8s ease-in-out;
+}
+
+@keyframes highlight-stats {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(90, 140, 59, 0.2); } /* Leichtes Grün */
+    100% { background-color: transparent; }
+}

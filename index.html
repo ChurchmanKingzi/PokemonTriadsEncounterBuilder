@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encounter Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="pokemon-builder-container">
+        <h1>Encounter Generator</h1>
+        <div class="loading">Pokémon-Daten werden geladen...</div>
+        <div class="team-container">
+            <!-- Slots werden hier dynamisch eingefügt -->
+        </div>
+    </div>
+    
+    <div class="sidebar-space">
+        <!-- Platz für zukünftiges Interface -->
+    </div>
+
+    <!-- Utility Scripts -->
+    <script src="utils.js"></script>
+    
+    <!-- Pokémon Data Services -->
+    <script src="pokemonService.js"></script>
+    <script src="moveService.js"></script>
+    
+    <!-- Berechnungs-Klassen -->
+    <script src="diceCalculator.js"></script>
+    <script src="statCalculator.js"></script>
+    
+    <!-- UI-Komponenten -->
+    <script src="uiBuilder.js"></script>
+    <script src="eventHandler.js"></script>
+    <script src="teamBuilder.js"></script>
+
+    <!-- Hauptanwendung -->
+    <script src="app.js"></script>
+</body>
+</html>
