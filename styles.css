@@ -1,46 +1,4 @@
-.stat-value-input {
-    width: 45px;
-    height: 22px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 13px;
-    color: #3b5ca8;
-    padding: 2px;
-}.pokemon-stats-container {
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-}
-
-.stats-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.stats-column {
-    width: 48%;
-}
-
-.stat-entry {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    margin-bottom: 3px;
-}
-
-.stat-name {
-    font-weight: bold;
-}
-
-.stat-value {
-    color: #3b5ca8;
-}
-
+/* ========== GENERAL LAYOUT ========== */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -58,40 +16,71 @@ h1 {
     padding-bottom: 10px;
 }
 
+/* Main container */
 .pokemon-builder-container {
-    width: 75%;
-    padding: 15px;
+    width: 65%; 
+    padding: 6px; 
     box-sizing: border-box;
     border-right: 2px solid #3b5ca8;
-    height: 100vh;
+    height: 70vh;
+    margin-bottom: 0;
+    padding-bottom: 5px;
     overflow-y: auto;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.team-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 15px;
-    scrollbar-width: thin;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
+/* Sidebar */
 .sidebar-space {
-    width: 25%;
-    padding: 15px;
+    width: 35%; 
+    padding: 12px; 
     box-sizing: border-box;
     height: 100vh;
     overflow-y: auto;
     background-color: #f0f0f0;
 }
 
+@media (min-height: 900px) {
+    .pokemon-builder-container {
+        height: 75vh !important;
+    }
+    
+    .initiative-container {
+        height: 20vh !important;
+    }
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    margin: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+/* ========== TEAM CONTAINER ========== */
+.team-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 8px;
+    scrollbar-width: thin;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 0;
+    border-top: none;
+    margin-bottom: 0;
+    border-bottom: 2px solid #3b5ca8;
+}
+
+.team-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+/* ========== POKEMON SLOT ========== */
 .pokemon-slot {
     flex: 0 0 250px;
     margin-right: 0;
@@ -99,23 +88,15 @@ h1 {
     border-radius: 8px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    margin-bottom: 3px;
 }
 
-.pokemon-image {
-    width: 120px;
-    height: 120px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pokemon-slot > * {
+    margin-bottom: 4px;
 }
 
-.pokemon-image img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-/* Benutzerdefiniertes Dropdown */
+/* ========== POKEMON SELECTION DROPDOWN ========== */
 .custom-select-container {
     position: relative;
     width: 100%;
@@ -126,22 +107,16 @@ h1 {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 5px;
     font-size: 14px;
+    min-height: 16px;
 }
 
 .custom-select-selected:hover {
     background-color: #f5f5f5;
-}
-
-.selected-sprite {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    vertical-align: middle;
 }
 
 .custom-select-options {
@@ -163,11 +138,10 @@ h1 {
     cursor: pointer;
 }
 
-.custom-select-option:hover, .custom-select-option.highlighted {
+.custom-select-option:hover {
     background-color: #f0f0f0;
 }
 
-/* Bei Hervorhebung eine stärkere Farbe als bei Hover */
 .custom-select-option.highlighted {
     background-color: #e0e0e0;
     border-left: 3px solid #3b5ca8;
@@ -176,6 +150,13 @@ h1 {
 .option-content {
     display: flex;
     align-items: center;
+}
+
+/* Option sprites */
+.selected-sprite {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
 }
 
 .option-sprite {
@@ -188,7 +169,7 @@ h1 {
     flex-grow: 1;
 }
 
-/* Scrollbar für das Dropdown */
+/* Scrollbar styling */
 .custom-select-options::-webkit-scrollbar {
     width: 8px;
 }
@@ -207,10 +188,53 @@ h1 {
     background: #aaa;
 }
 
+/* ========== POKEMON IMAGE & TYPES ========== */
+.pokemon-image-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.pokemon-image {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.pokemon-image img {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.pokemon-types {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.type-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== POKEMON DETAILS ========== */
 .pokemon-details-container {
     display: flex;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: space-between;
     align-items: center;
 }
@@ -225,11 +249,12 @@ h1 {
 .pokemon-name {
     font-weight: bold;
     text-align: left;
+    font-size: 13px;
 }
 
 .pokemon-number {
     color: #666;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .pokemon-level-container {
@@ -251,21 +276,15 @@ h1 {
 }
 
 .pokemon-level-input {
-    width: 50px;
-    height: 28px;
+    width: 40px;
+    height: 24px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 12px;
 }
 
-.loading {
-    text-align: center;
-    margin: 20px;
-    font-style: italic;
-    color: #666;
-}
-
-/* Würfel-Styling */
+/* ========== DICE STYLING ========== */
 .pokemon-dice {
     display: flex;
     justify-content: flex-start;
@@ -286,10 +305,10 @@ h1 {
 }
 
 .dice.legendary {
-    background-color: #d4af37; /* Gold für legendäre/mystische Pokémon */
+    background-color: #d4af37; /* Gold for legendary/mythical Pokémon */
 }
 
-/* Tooltip für BST-Info */
+/* Tooltip for BST info */
 .dice-tooltip {
     position: relative;
     cursor: help;
@@ -320,80 +339,121 @@ h1 {
     visibility: visible;
 }
 
-.pokemon-image-container {
-    display: flex;
+/* ========== STATS ========== */
+.pokemon-stats-container {
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.pokemon-image {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-.pokemon-types {
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin-left: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
 }
 
-.type-badge {
-    padding: 4px 8px;
-    border-radius: 4px;
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.stats-column {
+    width: 48%;
+}
+
+.stat-entry {
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2px;
 }
 
-/* Styles für Attacken-Container */
+.stat-name {
+    font-weight: bold;
+}
+
+.stat-value {
+    color: #3b5ca8;
+}
+
+.stat-value-input {
+    width: 40px;
+    height: 18px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #3b5ca8;
+    padding: 1px;
+}
+
+/* Animation for randomized stats */
+.stats-randomized {
+    animation: highlight-stats 0.8s ease-in-out;
+}
+
+@keyframes highlight-stats {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(90, 140, 59, 0.2); } /* Light green */
+    100% { background-color: transparent; }
+}
+
+/* ========== MOVES ========== */
 .pokemon-moves-container {
     width: 100%;
-    margin-top: 15px;
+    margin-top: 8px;
     border-top: 1px solid #ddd;
-    padding-top: 10px;
+    padding-top: 5px;
+}
+
+.moves-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .moves-title {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
 }
 
 .moves-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 5px;
 }
 
 .move-slot {
     width: 100%;
 }
 
-/* Anpassungen für Attacken-Dropdown */
 .move-select-container {
     margin-bottom: 0;
 }
 
 .move-select-selected {
-    font-size: 13px;
-    padding: 6px;
+    font-size: 11px;
+    padding: 4px;
+    min-height: 14px;
 }
 
 .move-select-options {
     max-height: 250px;
-    z-index: 101; /* Höher als die Pokémon-Dropdowns */
+    z-index: 101; /* Higher than Pokemon dropdowns */
 }
 
-/* Trennlinien im Dropdown */
+.move-select-options.dropdown-upward {
+    top: auto !important;
+    bottom: 100%;
+    margin-bottom: 2px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.move-select-options.dropdown-upward::-webkit-scrollbar-thumb {
+    border-radius: 4px 4px 0 0;
+}
+
+/* Dividers in dropdown */
 .move-divider {
     background-color: #f5f5f5;
     padding: 5px 8px;
@@ -404,46 +464,18 @@ h1 {
     pointer-events: none;
 }
 
-/* Attacken-Optionen nach Typ einfärben */
 .move-select-option {
     border-left: 3px solid transparent;
-}
-
-/* Styling für den Header mit Titel und Button */
-.moves-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-/* Styling für den Neues-Moveset Button */
-.new-moveset-button {
-    background-color: #3b5ca8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
+    padding: 5px 8px;
     font-size: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-.new-moveset-button:hover {
-    background-color: #2a4a8a;
+.move-select-option.highlighted {
+    background-color: #e0e0e0;
+    border-left-width: 5px;
 }
 
-.new-moveset-button:active {
-    background-color: #1b3a7a;
-}
-
-.new-moveset-button.disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
-}
-
-/* Farbzuweisungen für Attackentypen (Linkrand) */
+/* Move type coloring */
 .move-select-option.move-type-normal { border-left-color: #A8A878; }
 .move-select-option.move-type-fire { border-left-color: #F08030; }
 .move-select-option.move-type-water { border-left-color: #6890F0; }
@@ -463,22 +495,22 @@ h1 {
 .move-select-option.move-type-steel { border-left-color: #B8B8D0; }
 .move-select-option.move-type-fairy { border-left-color: #EE99AC; }
 
-
-/* Styling für ausgewählte Attacken */
+/* Selected move styling */
 .selected-move {
     display: flex;
     align-items: center;
 }
 
 .move-type-indicator {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 3px;
     flex-shrink: 0;
 }
 
-/* Farben für die Typ-Indikatoren der ausgewählten Attacken */
+/* ========== TYPE COLORS ========== */
+/* Color definitions for move indicators and type badges */
 .type-normal { background-color: #A8A878; }
 .type-fire { background-color: #F08030; }
 .type-water { background-color: #6890F0; }
@@ -498,51 +530,92 @@ h1 {
 .type-steel { background-color: #B8B8D0; }
 .type-fairy { background-color: #EE99AC; }
 
-/* Hervorgehobene Move-Option */
-.move-select-option.highlighted {
-    background-color: #e0e0e0;
-    border-left-width: 5px;
+/* ========== BUTTONS ========== */
+.new-moveset-button {
+    background-color: #3b5ca8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    height: 24px;
 }
 
-/* Anpassungen für bessere Lesbarkeit */
-.move-select-option {
-    padding: 5px 8px;
-    font-size: 12px;
+.new-moveset-button:hover {
+    background-color: #2a4a8a;
 }
 
-/* Farben für die verschiedenen Pokemon-Typen */
-.type-normal { background-color: #A8A878; }
-.type-fire { background-color: #F08030; }
-.type-water { background-color: #6890F0; }
-.type-grass { background-color: #78C850; }
-.type-electric { background-color: #F8D030; }
-.type-ice { background-color: #98D8D8; }
-.type-fighting { background-color: #C03028; }
-.type-poison { background-color: #A040A0; }
-.type-ground { background-color: #E0C068; }
-.type-flying { background-color: #A890F0; }
-.type-psychic { background-color: #F85888; }
-.type-bug { background-color: #A8B820; }
-.type-rock { background-color: #B8A038; }
-.type-ghost { background-color: #705898; }
-.type-dragon { background-color: #7038F8; }
-.type-dark { background-color: #705848; }
-.type-steel { background-color: #B8B8D0; }
-.type-fairy { background-color: #EE99AC; }
+.new-moveset-button:active {
+    background-color: #1b3a7a;
+}
 
-/* EXP Gain Container Styling */
+.new-moveset-button.disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.button-container {
+    display: flex;
+    gap: 4px;
+}
+
+.duplicate-button, .randomize-button {
+    border: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+}
+
+.duplicate-button {
+    background-color: #3b5ca8;
+}
+
+.duplicate-button:hover {
+    background-color: #2a4a8a;
+}
+
+.duplicate-button:active {
+    background-color: #1b3a7a;
+    transform: scale(0.98);
+}
+
+.randomize-button {
+    background-color: #5a8c3b; /* Green for Randomize */
+}
+
+.randomize-button:hover {
+    background-color: #4a7c2b;
+}
+
+.randomize-button:active {
+    background-color: #3a6c1b;
+    transform: scale(0.98);
+}
+
+/* ========== EXPERIENCE GAIN ========== */
 .exp-gain-container {
     width: 100%;
-    margin-top: 15px;
+    margin-top: 8px;
     border-top: 1px solid #ddd;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 .exp-gain-container.hidden {
     display: none;
 }
 
-/* EXP Header mit Label und Duplizieren-Button */
 .exp-header {
     display: flex;
     justify-content: space-between;
@@ -554,6 +627,7 @@ h1 {
     font-weight: bold;
     margin-bottom: 0;
     margin-right: 10px;
+    font-size: 12px;
 }
 
 .exp-input-container {
@@ -564,28 +638,28 @@ h1 {
 }
 
 .exp-gain-input {
-    width: 70px;
-    height: 28px;
+    width: 60px;
+    height: 24px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 12px;
     color: #3b5ca8;
 }
 
 .exp-multiplier-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 4px;
+    margin-top: 4px;
 }
 
 .exp-multiplier-button {
     background-color: #e0e0e0;
     border: none;
     border-radius: 4px;
-    padding: 6px 10px;
-    font-size: 12px;
+    padding: 4px 6px;
+    font-size: 11px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
     flex: 1;
@@ -601,7 +675,94 @@ h1 {
     color: white;
 }
 
-/* Responsive Anpassungen */
+/* ========== TEAM CONTROLS ========== */
+.team-controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    gap: 8px;
+}
+
+.team-controls-container.hidden {
+    display: none;
+}
+
+.team-level-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.team-level-label {
+    font-size: 11px;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.team-level-input {
+    width: 35px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 11px;
+}
+
+.team-init-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.team-init-label {
+    font-size: 11px;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.team-init-input {
+    width: 35px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 11px;
+    background-color: #fffaf0; /* Slight yellow background for INIT */
+    color: #d55e00; /* Orange text for INIT */
+}
+
+.team-exp-container {
+    margin-top: 6px;
+    font-size: 11px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
+/* ========== INITIATIVE CONTAINER ========== */
+.initiative-container {
+    height: 25vh !important;
+    padding: 8px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: absolute !important;
+    bottom: 5px !important;
+    top: auto !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.initiative-entry {
+    padding: 2px;
+}
+
+.initiative-sprite {
+    width: 32px;
+    height: 32px;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
 @media (max-width: 600px) {
     .exp-multiplier-container {
         flex-direction: column;
@@ -612,18 +773,7 @@ h1 {
     }
 }
 
-/* Hervorhebung der ausgewählten Option */
-.team-select-options .custom-select-option.highlighted {
-    background-color: #e0e0e0;
-    border-left: 3px solid #3b5ca8;
-}
-
-/* Hover-Effekt für Optionen */
-.team-select-options .custom-select-option:hover {
-    background-color: #f0f0f0;
-}
-
-/* Z-Index für Team-Dropdown-Menüs, damit sie über anderen Elementen erscheinen */
+/* ========== TEAM SELECT SPECIFIC STYLES ========== */
 .team-select-options {
     max-height: 250px;
     z-index: 200;
@@ -631,7 +781,15 @@ h1 {
     scrollbar-width: thin;
 }
 
-/* Scrollbar-Styling für Team-Dropdowns */
+.team-select-options .custom-select-option.highlighted {
+    background-color: #e0e0e0;
+    border-left: 3px solid #3b5ca8;
+}
+
+.team-select-options .custom-select-option:hover {
+    background-color: #f0f0f0;
+}
+
 .team-select-options::-webkit-scrollbar {
     width: 8px;
 }
@@ -650,60 +808,252 @@ h1 {
     background: #aaa;
 }
 
-
-/* Container für die Buttons */
-.button-container {
-    display: flex;
-    gap: 8px;
+.team-select-selected {
+    padding: 4px;
+    font-size: 12px;
 }
 
-/* Style für beide Buttons */
-.duplicate-button, .randomize-button {
-    background-color: #3b5ca8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 12px;
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1.2;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    height: 32px;
+.team-slot {
+    padding: 6px;
+}
+
+/* Initiative-Eintrag Layout */
+.initiative-entry {
     display: flex;
     align-items: center;
-    white-space: nowrap;
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+    gap: 10px;
 }
 
-.duplicate-button:hover, .randomize-button:hover {
-    background-color: #2a4a8a;
+/* Linker Bereich: Sprite und Name */
+.initiative-left-section {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    min-width: 120px;
 }
 
-.duplicate-button:active, .randomize-button:active {
-    background-color: #1b3a7a;
-    transform: scale(0.98);
+/* Mittlerer Bereich: HP-Bar und Schadenseingabe */
+.initiative-middle-section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 5px;
 }
 
-/* Unterschiedliche Farben für den Randomize-Button */
-.randomize-button {
-    background-color: #5a8c3b; /* Grün für Randomize */
+/* Rechter Bereich: Initiative-Wert */
+.initiative-right-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 70px;
 }
 
-.randomize-button:hover {
-    background-color: #4a7c2b;
+/* HP-Container Styles */
+.hp-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: background-color 0.3s;
 }
 
-.randomize-button:active {
-    background-color: #3a6c1b;
+/* HP-Bar Animation bei Veränderung */
+.hp-change {
+    animation: hp-pulse 0.5s ease-in-out;
 }
 
-/* Animation für randomisierte Stats */
-.stats-randomized {
-    animation: highlight-stats 0.8s ease-in-out;
+@keyframes hp-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
 }
 
-@keyframes highlight-stats {
-    0% { background-color: transparent; }
-    50% { background-color: rgba(90, 140, 59, 0.2); } /* Leichtes Grün */
-    100% { background-color: transparent; }
+/* HP-Bar Styles */
+.hp-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 2px;
+}
+
+.hp-fill {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+/* HP-Text Styles */
+.hp-text {
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+}
+
+/* Schaden-Container Styles */
+.damage-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+/* Schaden-Eingabefeld Styles */
+.damage-input {
+    width: 60px;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+/* Schaden-Button Styles */
+.damage-button {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.damage-button:hover {
+    background-color: #d32f2f;
+}
+
+.damage-button:active {
+    background-color: #b71c1c;
+}
+
+/* Spieler-Pokemon haben keinen mittleren Bereich */
+.initiative-entry.player-pokemon .initiative-middle-section {
+    display: none;
+}
+
+.initiative-entry.player-pokemon .initiative-left-section {
+    width: 70%;
+    flex-grow: 1;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .initiative-entry {
+        flex-wrap: wrap;
+    }
+    
+    .initiative-left-section {
+        width: 60%;
+    }
+    
+    .initiative-right-section {
+        width: 40%;
+        justify-content: flex-end;
+    }
+    
+    .initiative-middle-section {
+        width: 100%;
+        order: 3;
+        margin-top: 5px;
+    }
+}
+
+/* Action-Container für Schaden und Heilung */
+.action-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+/* Gemeinsame Styles für Schaden- und Heilungs-Container */
+.damage-container, .heal-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Eingabefelder für Schaden und Heilung */
+.damage-input, .heal-input {
+    width: 50px;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+/* Button-Styles */
+.damage-button, .heal-button {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: white;
+}
+
+/* Schaden-Button: Rot */
+.damage-button {
+    background-color: #f44336;
+}
+
+.damage-button:hover {
+    background-color: #d32f2f;
+}
+
+.damage-button:active {
+    background-color: #b71c1c;
+}
+
+/* Heilungs-Button: Grün */
+.heal-button {
+    background-color: #4caf50;
+}
+
+.heal-button:hover {
+    background-color: #388e3c;
+}
+
+.heal-button:active {
+    background-color: #2e7d32;
+}
+
+/* Styling für HP-Bereiche bei 0 HP */
+.hp-container[data-current-hp="0"] .hp-text {
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* Animation beim Ändern der HP */
+@keyframes hp-change {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+.hp-change {
+    animation: hp-change 0.4s ease-in-out;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+    .action-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .damage-container, .heal-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .damage-input, .heal-input {
+        width: 60px;
+    }
 }

@@ -170,11 +170,14 @@ class TeamBuilder {
         // Event-Listener für das Öffnen/Schließen des Dropdowns
         selectSelected.addEventListener('click', () => this.toggleTeamDropdown(index));
         
-        // Level-Container (anfangs versteckt)
-        const levelContainer = createElement('div', { 
-            class: 'team-level-container hidden',
-            id: `team-level-container-${index}`
+        // Level- und INIT-Container (anfangs versteckt)
+        const controlsContainer = createElement('div', { 
+            class: 'team-controls-container hidden',
+            id: `team-controls-container-${index}`
         });
+        
+        // Level-Steuerung
+        const levelContainer = createElement('div', { class: 'team-level-container' });
         
         const levelLabel = createElement('div', { class: 'team-level-label' });
         levelLabel.textContent = 'Level:';
@@ -194,6 +197,32 @@ class TeamBuilder {
         
         levelContainer.appendChild(levelLabel);
         levelContainer.appendChild(levelInput);
+        
+        // INIT-Steuerung (neu)
+        const initContainer = createElement('div', { class: 'team-init-container' });
+        
+        const initLabel = createElement('div', { class: 'team-init-label' });
+        initLabel.textContent = 'INIT:';
+        
+        const initInput = createElement('input', { 
+            type: 'text',
+            class: 'team-init-input',
+            id: `team-init-${index}`,
+            value: '0',
+            maxlength: '3'
+        });
+        
+        // Event-Listener für INIT-Änderungen
+        initInput.addEventListener('change', (event) => {
+            this.validateTeamInit(event, index);
+        });
+        
+        initContainer.appendChild(initLabel);
+        initContainer.appendChild(initInput);
+        
+        // Füge Level und INIT zum Controls-Container hinzu
+        controlsContainer.appendChild(levelContainer);
+        controlsContainer.appendChild(initContainer);
         
         // EXP-Container (anfangs versteckt)
         const expContainer = createElement('div', { 
@@ -215,10 +244,34 @@ class TeamBuilder {
         
         // Füge alles zum Slot hinzu
         slot.appendChild(selectContainer);
-        slot.appendChild(levelContainer);
+        slot.appendChild(controlsContainer);
         slot.appendChild(expContainer);
         
         return slot;
+    }
+
+    /**
+     * Validiert die INIT-Eingabe für Team-Pokémon
+     * @param {Event} event - Das Input-Event
+     * @param {number} index - Index des Team-Slots
+     */
+    validateTeamInit(event, index) {
+        const input = event.target;
+        const value = parseInt(input.value);
+        
+        // Speichere den aktuellen Wert als vorherigen Wert
+        if (!input.hasAttribute('data-prev-value')) {
+            input.setAttribute('data-prev-value', input.value || '0');
+        }
+        
+        // Überprüfe, ob der Wert eine positive Zahl bis 999 ist
+        if (isNaN(value) || value < 0 || value > 999) {
+            // Wenn ungültig, stelle den vorherigen Wert wieder her
+            input.value = input.getAttribute('data-prev-value');
+        } else {
+            // Wenn gültig, aktualisiere den vorherigen Wert
+            input.setAttribute('data-prev-value', value);
+        }
     }
 
     /**
@@ -659,8 +712,8 @@ class TeamBuilder {
         const previousValue = selectedElement.getAttribute('data-value');
         selectedElement.setAttribute('data-value', value);
         
-        // Level- und EXP-Container
-        const levelContainer = document.getElementById(`team-level-container-${index}`);
+        // Controls-Container und EXP-Container
+        const controlsContainer = document.getElementById(`team-controls-container-${index}`);
         const expContainer = document.getElementById(`team-exp-container-${index}`);
         const slotElement = document.getElementById(`team-slot-${index}`);
         
@@ -682,8 +735,8 @@ class TeamBuilder {
             textSpan.textContent = text;
             selectedElement.appendChild(textSpan);
             
-            // Level- und EXP-Container anzeigen
-            levelContainer.classList.remove('hidden');
+            // Controls- und EXP-Container anzeigen
+            controlsContainer.classList.remove('hidden');
             expContainer.classList.remove('hidden');
             
             // Slot visuell hervorheben
@@ -705,14 +758,23 @@ class TeamBuilder {
                         levelInput.value = this.DEFAULT_LEVEL;
                         levelInput.setAttribute('data-prev-value', this.DEFAULT_LEVEL);
                     }
+                    
+                    // INIT-Wert auf einen Standardwert setzen
+                    const initInput = document.getElementById(`team-init-${index}`);
+                    if (initInput) {
+                        // Setze Standard-INIT basierend auf Pokémon-Geschwindigkeit oder auf 10
+                        const defaultInit = pokemon.stats?.find(s => s.stat.name === 'speed')?.base_stat || 10;
+                        initInput.value = defaultInit;
+                        initInput.setAttribute('data-prev-value', defaultInit);
+                    }
                 }
             }
         } else {
             // Nur Text anzeigen (leerer Slot)
             selectedElement.textContent = text;
             
-            // Level- und EXP-Container ausblenden
-            levelContainer.classList.add('hidden');
+            // Controls- und EXP-Container ausblenden
+            controlsContainer.classList.add('hidden');
             expContainer.classList.add('hidden');
             
             // Slot-Styling zurücksetzen

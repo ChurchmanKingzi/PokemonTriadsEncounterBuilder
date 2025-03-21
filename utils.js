@@ -71,3 +71,35 @@ function validateExpInput(event) {
         input.setAttribute('data-prev-value', value);
     }
 }
+
+/**
+ * Prüft, ob ein Element am unteren Rand des Viewports liegt
+ */
+function isNearBottomOfViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+    // Wenn das Element im unteren Drittel des Viewports liegt
+    return rect.bottom > viewportHeight * 0.5;
+  }
+  
+  /**
+   * Positioniert ein Dropdown-Menü je nach Position im Viewport
+   */
+  function positionDropdown(dropdown, container) {
+    // Entferne vorherige Positionierungen
+    dropdown.style.bottom = '';
+    dropdown.style.top = '';
+    
+    if (isNearBottomOfViewport(container)) {
+      // Wenn der Container nahe am unteren Rand ist, positioniere das Dropdown über dem Container
+      dropdown.style.bottom = container.offsetHeight + 'px';
+      dropdown.style.top = 'auto';
+      dropdown.classList.add('dropdown-upward');
+    } else {
+      // Ansonsten zeige es unterhalb an (Standard)
+      dropdown.style.top = container.offsetHeight + 'px';
+      dropdown.style.bottom = 'auto';
+      dropdown.classList.remove('dropdown-upward');
+    }
+  }

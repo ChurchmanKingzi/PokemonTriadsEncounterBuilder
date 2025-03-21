@@ -109,56 +109,61 @@ class PokemonTeamBuilder {
      */
     toggleMoveDropdown(pokemonIndex, moveIndex) {
         const optionsContainer = document.getElementById(`move-options-${pokemonIndex}-${moveIndex}`);
+        const moveSelectElement = document.getElementById(`move-select-${pokemonIndex}-${moveIndex}`);
+        const containerElement = moveSelectElement.parentElement;
         
         // Schließe alle anderen Dropdowns
         this.closeAllDropdowns();
         
         // Toggle des aktuellen Dropdowns
         if (optionsContainer.style.display === 'block') {
-            optionsContainer.style.display = 'none';
-            this.activeMoveDropdown = null;
-            this.searchQuery = ''; // Suchanfrage zurücksetzen
+        optionsContainer.style.display = 'none';
+        this.activeMoveDropdown = null;
+        this.searchQuery = ''; // Suchanfrage zurücksetzen
         } else {
-            // Prüfe, ob ein Pokémon ausgewählt ist
-            const pokemonId = document.getElementById(`pokemon-select-${pokemonIndex}`).getAttribute('data-value');
-            if (!pokemonId) {
-                // Wenn kein Pokémon ausgewählt ist, zeige keine Attacken an
-                return;
+        // Prüfe, ob ein Pokémon ausgewählt ist
+        const pokemonId = document.getElementById(`pokemon-select-${pokemonIndex}`).getAttribute('data-value');
+        if (!pokemonId) {
+            // Wenn kein Pokémon ausgewählt ist, zeige keine Attacken an
+            return;
+        }
+        
+        // Hole Pokémon-Daten
+        const pokemon = this.pokemonService.getPokemonById(Number(pokemonId));
+        if (!pokemon) return;
+        
+        // Kategorisiere und sortiere Attacken
+        const categorizedMoves = this.moveService.categorizeMoves(pokemon);
+        
+        // Fülle das Dropdown
+        this.uiBuilder.populateMoveDropdown(pokemonIndex, moveIndex, categorizedMoves);
+        
+        // Positioniere das Dropdown je nach Position im Viewport
+        positionDropdown(optionsContainer, containerElement);
+        
+        // Zeige das Dropdown an
+        optionsContainer.style.display = 'block';
+        this.activeMoveDropdown = {
+            pokemonIndex,
+            moveIndex
+        };
+        
+        // Scrollposition anpassen
+        const selectedMoveId = moveSelectElement.getAttribute('data-value');
+        if (selectedMoveId) {
+            const selectedOption = optionsContainer.querySelector(`[data-value="${selectedMoveId}"]`);
+            if (selectedOption) {
+            optionsContainer.scrollTop = selectedOption.offsetTop - optionsContainer.offsetTop - 50;
+            // Hervorhebe die aktuell ausgewählte Attacke
+            this.uiBuilder.highlightOption(selectedOption, optionsContainer);
             }
-            
-            // Hole Pokémon-Daten
-            const pokemon = this.pokemonService.getPokemonById(Number(pokemonId));
-            if (!pokemon) return;
-            
-            // Kategorisiere und sortiere Attacken
-            const categorizedMoves = this.moveService.categorizeMoves(pokemon);
-            
-            // Fülle das Dropdown
-            this.uiBuilder.populateMoveDropdown(pokemonIndex, moveIndex, categorizedMoves);
-            
-            // Zeige das Dropdown an
-            optionsContainer.style.display = 'block';
-            this.activeMoveDropdown = {
-                pokemonIndex,
-                moveIndex
-            };
-            
-            // Scrollposition anpassen
-            const selectedMoveId = document.getElementById(`move-select-${pokemonIndex}-${moveIndex}`).getAttribute('data-value');
-            if (selectedMoveId) {
-                const selectedOption = optionsContainer.querySelector(`[data-value="${selectedMoveId}"]`);
-                if (selectedOption) {
-                    optionsContainer.scrollTop = selectedOption.offsetTop - optionsContainer.offsetTop - 50;
-                    // Hervorhebe die aktuell ausgewählte Attacke
-                    this.uiBuilder.highlightOption(selectedOption, optionsContainer);
-                }
-            } else {
-                // Wenn keine Attacke ausgewählt ist, hebe die erste Option hervor (für Enter-Auswahl)
-                const firstMoveOption = optionsContainer.querySelector('.move-select-option[data-value]:not([data-value=""])');
-                if (firstMoveOption) {
-                    this.uiBuilder.highlightOption(firstMoveOption, optionsContainer);
-                }
+        } else {
+            // Wenn keine Attacke ausgewählt ist, hebe die erste Option hervor (für Enter-Auswahl)
+            const firstMoveOption = optionsContainer.querySelector('.move-select-option[data-value]:not([data-value=""])');
+            if (firstMoveOption) {
+            this.uiBuilder.highlightOption(firstMoveOption, optionsContainer);
             }
+        }
         }
     }
 
@@ -513,37 +518,42 @@ class PokemonTeamBuilder {
      */
     toggleDropdown(index) {
         const optionsContainer = document.getElementById(`pokemon-options-${index}`);
+        const pokemonSelectElement = document.getElementById(`pokemon-select-${index}`);
+        const containerElement = pokemonSelectElement.parentElement;
         
         // Schließe alle anderen Dropdowns
         this.closeAllDropdowns();
         
         // Toggle des aktuellen Dropdowns
         if (optionsContainer.style.display === 'block') {
-            optionsContainer.style.display = 'none';
-            this.activeDropdown = null;
-            this.searchQuery = ''; // Suchanfrage zurücksetzen
+          optionsContainer.style.display = 'none';
+          this.activeDropdown = null;
+          this.searchQuery = ''; // Suchanfrage zurücksetzen
         } else {
-            optionsContainer.style.display = 'block';
-            this.activeDropdown = index;
-            
-            // Scrollposition anpassen
-            const selectedPokemonId = document.getElementById(`pokemon-select-${index}`).getAttribute('data-value');
-            if (selectedPokemonId) {
-                const selectedOption = optionsContainer.querySelector(`[data-value="${selectedPokemonId}"]`);
-                if (selectedOption) {
-                    optionsContainer.scrollTop = selectedOption.offsetTop - optionsContainer.offsetTop - 50;
-                    // Hervorhebe das aktuell ausgewählte Pokémon
-                    this.uiBuilder.highlightOption(selectedOption, optionsContainer);
-                }
-            } else {
-                // Wenn kein Pokémon ausgewählt ist, hebe die erste Option hervor (für Enter-Auswahl)
-                const firstPokemonOption = optionsContainer.querySelector('.custom-select-option[data-value]:not([data-value=""])');
-                if (firstPokemonOption) {
-                    this.uiBuilder.highlightOption(firstPokemonOption, optionsContainer);
-                }
+          optionsContainer.style.display = 'block';
+          this.activeDropdown = index;
+          
+          // Positioniere das Dropdown je nach Position im Viewport
+          positionDropdown(optionsContainer, containerElement);
+          
+          // Scrollposition anpassen
+          const selectedPokemonId = pokemonSelectElement.getAttribute('data-value');
+          if (selectedPokemonId) {
+            const selectedOption = optionsContainer.querySelector(`[data-value="${selectedPokemonId}"]`);
+            if (selectedOption) {
+              optionsContainer.scrollTop = selectedOption.offsetTop - optionsContainer.offsetTop - 50;
+              // Hervorhebe das aktuell ausgewählte Pokémon
+              this.uiBuilder.highlightOption(selectedOption, optionsContainer);
             }
+          } else {
+            // Wenn kein Pokémon ausgewählt ist, hebe die erste Option hervor (für Enter-Auswahl)
+            const firstPokemonOption = optionsContainer.querySelector('.custom-select-option[data-value]:not([data-value=""])');
+            if (firstPokemonOption) {
+              this.uiBuilder.highlightOption(firstPokemonOption, optionsContainer);
+            }
+          }
         }
-    }
+      }
 
     /**
      * Setzt den ausgewählten Pokémon für einen Slot
@@ -1296,11 +1306,18 @@ class PokemonTeamBuilder {
                 statsContainer.classList.remove('stats-randomized');
             }, 1000);
         }
+        
+        // NEUE FUNKTIONALITÄT: Update der Initiative-Liste
+        // Nach der Änderung der Stats (insbesondere INIT) aktualisieren wir die Initiative-Liste
+        if (typeof updateInitiativeList === 'function') {
+            updateInitiativeList(this);
+        }
     }
 }
 
 // Starte die Anwendung, wenn das DOM geladen ist
 document.addEventListener('DOMContentLoaded', () => {
     const app = new PokemonTeamBuilder();
+    window.pokemonApp = app; // Mache das Objekt global verfügbar
     app.init();
 });
