@@ -102,4 +102,87 @@ function isNearBottomOfViewport(element) {
       dropdown.style.bottom = 'auto';
       dropdown.classList.remove('dropdown-upward');
     }
-  }
+}
+
+/**
+ * Richtet die korrekte Positionierung der Tooltips ein
+ * Diese Funktion wird aufgerufen, wenn neue Würfel hinzugefügt werden
+ */
+/**
+ * Richtet die korrekte Positionierung der Tooltips ein
+ * Diese Funktion wird aufgerufen, wenn neue Würfel hinzugefügt werden
+ */
+function setupTooltipPositioning() {
+    // Selektiere alle Elemente mit dice-tooltip Klasse
+    const tooltipElements = document.querySelectorAll('.dice-tooltip');
+    
+    tooltipElements.forEach(tooltip => {
+        // Entferne bestehende Event-Listener durch Klonen des Elements
+        const newTooltip = tooltip.cloneNode(true);
+        tooltip.parentNode.replaceChild(newTooltip, tooltip);
+        
+        // Füge die Event-Listener zum neuen Element hinzu
+        newTooltip.addEventListener('mouseenter', () => {
+            // Warte einen Moment, bis der Tooltip sichtbar ist
+            setTimeout(() => {
+                // Prüfe die Position des Tooltips
+                const tooltipRect = newTooltip.getBoundingClientRect();
+                const tooltipText = newTooltip.getAttribute('data-tooltip') || '';
+                
+                // Berechne die erwartete Position des Tooltips basierend auf der Textlänge
+                const viewportWidth = window.innerWidth;
+                const tooltipCenter = tooltipRect.left + (tooltipRect.width / 2);
+                
+                // Bestimme die Breite des Tooltips basierend auf der Textlänge
+                // Kürzere Texte verwenden den tatsächlichen Platzbedarf, längere bekommen die maximale Breite
+                let tooltipWidth;
+                
+                if (tooltipText.length < 50) {
+                    // Für kurze Texte: Berechne die ungefähre Breite
+                    tooltipWidth = Math.min(tooltipText.length * 7 + 24, 300); // 7px pro Zeichen + Padding
+                } else {
+                    // Für lange Texte: Verwende die maximale Breite
+                    tooltipWidth = 300; // Maximale Breite aus CSS
+                }
+                
+                // Stelle sicher, dass für sehr lange Texte die Maximale Breite verwendet wird
+                if (tooltipText.length > 100) {
+                    tooltipWidth = 300;
+                }
+                
+                // Überprüfe, ob der Tooltip links oder rechts über den Viewport hinausragen würde
+                // Links
+                if (tooltipCenter - (tooltipWidth / 2) < 10) {
+                    // Wenn der Tooltip links über den Bildschirmrand hinausragt
+                    newTooltip.style.setProperty('--tooltip-left', '0');
+                    newTooltip.style.setProperty('--tooltip-right', 'auto');
+                    newTooltip.style.setProperty('--tooltip-transform', 'translateX(0)');
+                }
+                // Rechts
+                else if (tooltipCenter + (tooltipWidth / 2) > viewportWidth - 10) {
+                    // Wenn der Tooltip rechts über den Bildschirmrand hinausragt
+                    newTooltip.style.setProperty('--tooltip-left', 'auto');
+                    newTooltip.style.setProperty('--tooltip-right', '0');
+                    newTooltip.style.setProperty('--tooltip-transform', 'translateX(0)');
+                }
+                // In der Mitte (Standard)
+                else {
+                    // Standard zentrierte Position
+                    newTooltip.style.setProperty('--tooltip-left', '50%');
+                    newTooltip.style.setProperty('--tooltip-right', 'auto');
+                    newTooltip.style.setProperty('--tooltip-transform', 'translateX(-50%)');
+                }
+            }, 10);
+        });
+        
+        // Zurücksetzen beim Verlassen des Elements
+        newTooltip.addEventListener('mouseleave', () => {
+            // Setze die Variablen zurück zu den Standardwerten
+            newTooltip.style.removeProperty('--tooltip-left');
+            newTooltip.style.removeProperty('--tooltip-right');
+            newTooltip.style.removeProperty('--tooltip-transform');
+        });
+    });
+    
+    console.log(`Tooltip-Positionierung für ${tooltipElements.length} Würfel-Tooltips eingerichtet`);
+}

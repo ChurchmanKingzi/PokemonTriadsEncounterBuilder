@@ -41,20 +41,14 @@ class TeamBuilder {
         // Leere den Container
         sidebarSpace.innerHTML = '';
         
-        // Erstelle den Titel
-        const teamTitle = createElement('h2');
-        teamTitle.textContent = 'Spieler-Pokémon';
-        teamTitle.style.color = '#3b5ca8';
-        teamTitle.style.borderBottom = '2px solid #3b5ca8';
-        teamTitle.style.paddingBottom = '10px';
-        teamTitle.style.marginBottom = '20px';
+        // Überschrift "Spieler-Pokémon" wird entfernt
         
         // Erstelle den Team-Container
-        this.teamContainer = createElement('div', { class: 'team-grid-container' });
+        this.teamContainer = createElement('div', { class: 'team-grid-container compressed' });
         
         // Erstelle 3 Spalten mit je 3 Pokémon-Slots
         for (let row = 0; row < 4; row++) {
-            const rowContainer = createElement('div', { class: 'team-row' });
+            const rowContainer = createElement('div', { class: 'team-row compressed' });
             
             for (let col = 0; col < 3; col++) {
                 const index = row * 3 + col;
@@ -73,7 +67,6 @@ class TeamBuilder {
         this.addTeamStyles();
         
         // Füge Elemente zum Sidebar-Space hinzu
-        sidebarSpace.appendChild(teamTitle);
         sidebarSpace.appendChild(this.teamContainer);
     }
     

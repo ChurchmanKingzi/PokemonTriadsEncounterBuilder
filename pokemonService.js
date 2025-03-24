@@ -81,7 +81,7 @@ class PokemonService {
     }
     
     /**
-     * Lädt Evolutionsdaten für ein Pokémon
+     * Lädt Evolutionsdaten für ein Pokémon - aktualisierte Version mit Level-Informationen
      * @param {string} chainId - ID der Evolutionskette
      * @param {number} pokemonId - ID des Pokémons
      */
@@ -102,9 +102,29 @@ class PokemonService {
             
             const totalEvolutionStages = 1 + getMaxEvolutionDepth(data.chain); // +1 für die Basis-Form
             
-            // Rekursive Funktion, um zu finden, wo ein Pokémon in der Evolutionskette steht
-            // und wie viele Evolutionen es noch vor sich hat
-            const findPokemonInChain = (chain, currentLevel = 0, path = []) => {
+            // Neue Funktion zum Extrahieren der Level-Informationen aus einer Evolution
+            const extractEvolutionLevel = (evolution) => {
+                // Standard-Trigger ist "level-up", aber wir suchen speziell nach min_level
+                let minLevel = 0;
+                
+                if (evolution && evolution.evolution_details && evolution.evolution_details.length > 0) {
+                    const details = evolution.evolution_details[0]; // Nehme den ersten Eintrag
+                    if (details.min_level) {
+                        minLevel = details.min_level;
+                    } else if (details.trigger && details.trigger.name === "level-up") {
+                        // Wenn es ein Level-Up-Trigger ist, aber kein min_level angegeben ist,
+                        // setze ein Standard-Level (z.B. 20)
+                        minLevel = 20;
+                    }
+                    // Andere Trigger wie Items, Tausch usw. bleiben bei 0
+                }
+                
+                return minLevel;
+            };
+            
+            // Erweiterte rekursive Funktion, um zu finden, wo ein Pokémon in der Evolutionskette steht
+            // und wie viele Evolutionen es noch vor sich hat, sowie die Level-Anforderungen
+            const findPokemonInChain = (chain, currentLevel = 0, path = [], evolutionLevels = []) => {
                 if (!chain) return null;
                 
                 const speciesId = parseInt(chain.species.url.split('/').filter(Boolean).pop());
@@ -119,13 +139,21 @@ class PokemonService {
                         evolutionLevel: currentLevel,         // Aktuelle Evolutionsstufe
                         remainingEvolutions: remainingLevels, // Verbleibende Evolutionsstufen
                         evolutionChainLength: totalEvolutionStages, // Gesamtlänge der Kette
-                        evolutionPath: path                  // Pfad in der Evolutionskette
+                        evolutionPath: path,                  // Pfad in der Evolutionskette
+                        firstEvolutionLevel: evolutionLevels[0] || 0,  // Level der ersten Evolution
+                        secondEvolutionLevel: evolutionLevels[1] || 0   // Level der zweiten Evolution
                     };
                 }
                 
                 // Suche in allen Evolutionen
                 for (const evolution of chain.evolves_to) {
-                    const result = findPokemonInChain(evolution, currentLevel + 1, [...path]);
+                    // Extrahiere das Level für diese Evolution
+                    const evolutionLevel = extractEvolutionLevel(evolution);
+                    
+                    // Kopiere die evolutionLevels und füge das neue Level hinzu
+                    const updatedLevels = [...evolutionLevels, evolutionLevel];
+                    
+                    const result = findPokemonInChain(evolution, currentLevel + 1, [...path], updatedLevels);
                     if (result) return result;
                 }
                 
@@ -173,9 +201,18 @@ class PokemonService {
                     pokemon.baseStatTotal = this.calculateBST(pokemon);
                     
                     // Füge Evolutionsinformationen hinzu
-                    const evolutionInfo = this.evolutionMap.get(pokemon.id) || { remainingEvolutions: 0, evolutionLevel: 0 };
+                    const evolutionInfo = this.evolutionMap.get(pokemon.id) || { 
+                        remainingEvolutions: 0, 
+                        evolutionLevel: 0,
+                        firstEvolutionLevel: 0,
+                        secondEvolutionLevel: 0
+                    };
+                    
                     pokemon.remainingEvolutions = evolutionInfo.remainingEvolutions;
                     pokemon.evolutionLevel = evolutionInfo.evolutionLevel;
+                    // Füge die neuen Level-Informationen hinzu
+                    pokemon.firstEvolutionLevel = evolutionInfo.firstEvolutionLevel;
+                    pokemon.secondEvolutionLevel = evolutionInfo.secondEvolutionLevel;
                     
                     this.pokemonMap.set(pokemon.id, pokemon);
                 }

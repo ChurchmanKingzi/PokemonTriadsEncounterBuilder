@@ -19,6 +19,7 @@ class PokemonTeamBuilder {
         this.searchQuery = '';
         this.searchTimeout = null;
         this.currentSlotCount = 0;      // Aktuelle Anzahl an Slots
+        this.tooltipInitialized = false;
     }
 
     /**
@@ -57,6 +58,47 @@ class PokemonTeamBuilder {
         } catch (error) {
             this.loadingMessage.textContent = 'Fehler beim Laden der Daten. Bitte versuche es später erneut.';
         }
+
+        // Initialisiere Tooltip-Positionierung
+        this.initializeTooltipPositioning();
+
+        this.initializePokemonTeamBuilderWithTooltips();
+    }
+
+    /**
+     * Initialisiert die Tooltip-Positionierung für die Würfel-Tooltips
+     * Diese Methode wird auch aufgerufen, wenn neue Slots hinzugefügt werden
+     */
+    initializeTooltipPositioning() {
+        // Verzögerung, um sicherzustellen, dass alle DOM-Elemente geladen sind
+        setTimeout(() => {
+            // Rufe die Funktion aus utils.js auf
+            if (typeof setupTooltipPositioning === 'function') {
+                setupTooltipPositioning();
+                this.tooltipInitialized = true;
+            }
+        }, 200);
+    }
+
+    initializePokemonTeamBuilderWithTooltips() {
+        // Fähigkeits-Tooltips direkt initialisieren, falls die App bereits geladen ist
+        if (this.uiBuilder) {
+            this.uiBuilder.createAbilityTooltips();
+            console.log('Fähigkeits-Tooltips wurden initialisiert.');
+            return;
+        }
+        
+        // Warte, bis die Hauptanwendung initialisiert ist
+        const checkAppInterval = setInterval(() => {
+            if (window.pokemonApp && window.pokemonApp.uiBuilder) {
+                clearInterval(checkAppInterval);
+                
+                // Füge die Methode zur Initialisierung von Fähigkeits-Tooltips hinzu
+                window.pokemonApp.uiBuilder.createAbilityTooltips();
+                
+                console.log('Fähigkeits-Tooltips wurden nach Timeout initialisiert.');
+            }
+        }, 500); // Alle 500ms prüfen
     }
 
     /**
@@ -343,6 +385,9 @@ class PokemonTeamBuilder {
                 left: this.teamContainer.scrollWidth,
                 behavior: 'smooth'
             });
+            
+            // Initialisiere Tooltip-Positionierung für den neuen Slot
+            this.initializeTooltipPositioning();
         }, 100);
     }
 
@@ -788,57 +833,6 @@ class PokemonTeamBuilder {
     }
 
     /**
-     * Hilfsfunktion zum Mischen eines Arrays
-     * @param {Array} array - Das zu mischende Array
-     * @returns {Array} - Das gemischte Array
-     */
-    /**
-     * Hilfsfunktion zum Mischen eines Arrays
-     * @param {Array} array - Das zu mischende Array
-     * @returns {Array} - Das gemischte Array
-     */
-    shuffleArray(array) {
-        const newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    }
-
-    /**
-     * Sammelt alle eindeutigen Attacken für die "Andere"-Kategorie
-     * @param {Object} categorizedMoves - Die kategorisierten Attacken
-     * @returns {Array} - Liste aller eindeutigen Attacken für "Andere"
-     */
-    getUniqueOtherMoves(categorizedMoves) {
-        // Bei der neuen Implementierung enthält otherMoves bereits alle eindeutigen Attacken
-        // einschließlich der universellen Attacken, die nicht in anderen Kategorien sind
-        return categorizedMoves.otherMoves;
-    }
-
-
-
-    /**
-     * Hilfsfunktion zum Mischen eines Arrays
-     * @param {Array} array - Das zu mischende Array
-     * @returns {Array} - Das gemischte Array
-     */
-    /**
-     * Hilfsfunktion zum Mischen eines Arrays
-     * @param {Array} array - Das zu mischende Array
-     * @returns {Array} - Das gemischte Array
-     */
-    shuffleArray(array) {
-        const newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    }
-
-    /**
      * Sammelt alle eindeutigen Attacken für die "Andere"-Kategorie
      * @param {Object} categorizedMoves - Die kategorisierten Attacken
      * @returns {Array} - Liste aller eindeutigen Attacken für "Andere"
@@ -876,7 +870,6 @@ class PokemonTeamBuilder {
      * Diese Methode muss erweitert werden, um den Moves-Container zu aktualisieren
      */
     displayPokemonDetails(slot, pokemonData) {
-        // Bestehender Code bleibt unverändert
         const imageContainer = document.getElementById(`pokemon-image-${slot}`);
         const nameContainer = document.getElementById(`pokemon-name-${slot}`);
         const diceContainer = document.getElementById(`pokemon-dice-${slot}`);
@@ -886,6 +879,7 @@ class PokemonTeamBuilder {
         const typesContainer = document.getElementById(`pokemon-types-${slot}`);
         const movesContainer = document.getElementById(`pokemon-moves-${slot}`); // Container für Attacken
         const newMovesetButton = document.getElementById(`new-moveset-${slot}`); // Button für neues Moveset
+        const abilitiesContainer = document.getElementById(`pokemon-abilities-${slot}`); // Container für Fähigkeiten
         
         // Leere alle Container
         imageContainer.innerHTML = '';
@@ -905,6 +899,14 @@ class PokemonTeamBuilder {
             }
         }
         
+        // Leere den Fähigkeiten-Container, falls er existiert
+        if (abilitiesContainer) {
+            const abilitiesList = abilitiesContainer.querySelector('.abilities-list');
+            if (abilitiesList) {
+                abilitiesList.innerHTML = '';
+            }
+        }
+        
         if (!pokemonData) {
             // Setze Level-Input zurück und blende ihn aus
             levelInput.value = '5';
@@ -915,6 +917,11 @@ class PokemonTeamBuilder {
             // Blende auch den Attacken-Container aus
             if (movesContainer) {
                 movesContainer.classList.add('hidden');
+            }
+            
+            // Blende auch den Fähigkeiten-Container aus
+            if (abilitiesContainer) {
+                abilitiesContainer.classList.add('hidden');
             }
             
             // Deaktiviere den "Neues Moveset" Button
@@ -943,17 +950,17 @@ class PokemonTeamBuilder {
             });
         }
         
-        // Name und Nummer anzeigen
+        // Name anzeigen - GEÄNDERT: Nur den Namen anzeigen, keine Nummer
         const name = document.createElement('span');
         name.textContent = pokemonData.germanName || pokemonData.name;
-        
-        const number = createElement('div', { class: 'pokemon-number' });
-        number.textContent = `#${String(pokemonData.id).padStart(4, '0')}`;
-        
         nameContainer.appendChild(name);
-        nameContainer.appendChild(number);
         
-        // Würfel anzeigen
+        // Diese Zeilen entfernen, um die Pokémon-Nummer zu entfernen
+        // const number = createElement('div', { class: 'pokemon-number' });
+        // number.textContent = `#${String(pokemonData.id).padStart(4, '0')}`;
+        // nameContainer.appendChild(number);
+        
+        // Würfel anzeigen - Anpassungen für kompaktes Layout
         const diceInfo = DiceCalculator.determineDiceType(pokemonData);
         if (diceInfo) {
             const diceElement = createElement('div', { 
@@ -987,9 +994,137 @@ class PokemonTeamBuilder {
         
         // Weise automatisch zufällige Attacken zu
         this.assignRandomMoves(slot, pokemonData);
-
-        //EXP-Gain anzeigen
+    
+        // EXP-Gain anzeigen
         this.updateExpGain(slot, pokemonData, defaultLevel);
+        
+        // NEU: Zeige die Fähigkeiten an
+        this.displayPokemonAbilities(slot, pokemonData);
+        
+        // Nachdem die Details angezeigt wurden, initialisiere die Tooltip-Positionierung
+        // aber nur, wenn displayPokemonDetails mit einem gültigen pokemonData aufgerufen wird
+        if (pokemonData) {
+            this.initializeTooltipPositioning();
+        }
+    }
+
+    /**
+     * Zeigt die Fähigkeiten eines Pokémon an, indem die getAbilities-Funktion aus abilityService.js verwendet wird
+     * @param {number} slot - Slot-Index
+     * @param {Object} pokemonData - Pokémon-Daten
+     */
+    displayPokemonAbilities(slot, pokemonData) {
+        if (!pokemonData) return;
+        
+        // Prüfe, ob der Fähigkeiten-Container existiert
+        let abilitiesContainer = document.getElementById(`pokemon-abilities-${slot}`);
+        
+        // Falls nicht, erstelle ihn
+        if (!abilitiesContainer) {
+            abilitiesContainer = createElement('div', {
+                class: 'pokemon-abilities-container',
+                id: `pokemon-abilities-${slot}`
+            });
+            
+            // Header mit Titel
+            const abilitiesHeader = createElement('div', { class: 'abilities-header' });
+            
+            const abilitiesTitle = createElement('div', { class: 'abilities-title' });
+            abilitiesTitle.textContent = 'Fähigkeiten';
+            
+            // Header zusammenbauen
+            abilitiesHeader.appendChild(abilitiesTitle);
+            
+            // Container für die Fähigkeiten
+            const abilitiesList = createElement('div', { 
+                class: 'abilities-list',
+                id: `abilities-list-${slot}`
+            });
+            
+            abilitiesContainer.appendChild(abilitiesHeader);
+            abilitiesContainer.appendChild(abilitiesList);
+            
+            // Füge den Container nach dem Moves-Container ein
+            const movesContainer = document.getElementById(`pokemon-moves-${slot}`);
+            if (movesContainer && movesContainer.parentNode) {
+                movesContainer.parentNode.insertBefore(abilitiesContainer, movesContainer.nextSibling);
+            }
+        }
+        
+        // Zeige den Container an
+        abilitiesContainer.classList.remove('hidden');
+        
+        // Hole die Liste der Fähigkeiten
+        const abilitiesList = abilitiesContainer.querySelector('.abilities-list');
+        if (!abilitiesList) return;
+        
+        // Leere die Liste
+        abilitiesList.innerHTML = '';
+        
+        try {
+            // Die direkte Verwendung der getAbilities-Funktion aus abilityService.js
+            // Die Funktion nimmt eine Pokémon-ID entgegen und gibt ein Array mit drei Fähigkeiten zurück
+            
+            // Import der abilityService.js erfolgt über:
+            // <script src="abilityService.js"></script> im HTML
+            
+            // Prüfe, ob die getAbilities-Funktion direkt verfügbar ist
+            if (typeof getAbilities === 'function') {
+                // Direkte Verwendung, falls die Funktion im globalen Scope verfügbar ist
+                const abilities = getAbilities(pokemonData.id);
+                displayAbilities(abilities);
+            }
+            // Alternativ, falls die Funktion als Teil eines Moduls exportiert wird
+            else if (typeof abilityService !== 'undefined' && typeof abilityService.getAbilities === 'function') {
+                // Verwendung über das Modul
+                const abilities = abilityService.getAbilities(pokemonData.id);
+                displayAbilities(abilities);
+            }
+            // Als weitere Alternative: Dynamisches Laden von abilityService.js
+            else {
+                console.warn("getAbilities-Funktion nicht gefunden, versuche abilityService.js zu laden...");
+                
+                // Hier könnten wir die abilityService.js dynamisch laden,
+                // falls das in der Umgebung unterstützt wird
+                
+                // Fallback für den Test: Hartcodierte Fähigkeiten
+                const fallbackAbilities = [
+                    "Fähigkeit nicht verfügbar",
+                    "Überprüfe abilityService.js",
+                    "Leer"
+                ];
+                displayAbilities(fallbackAbilities);
+            }
+        } catch (error) {
+            console.error('Fehler beim Anzeigen der Fähigkeiten:', error);
+            
+            // Zeige eine Fehlermeldung im Fähigkeiten-Container an
+            const errorMessage = createElement('div', { 
+                class: 'ability-badge error'
+            });
+            errorMessage.textContent = 'Fehler beim Laden der Fähigkeiten';
+            abilitiesList.appendChild(errorMessage);
+        }
+        
+        // Hilfsfunktion zum Anzeigen der Fähigkeiten
+        function displayAbilities(abilities) {
+            if (!abilities || !Array.isArray(abilities)) {
+                console.error('Ungültige Fähigkeiten', abilities);
+                return;
+            }
+            
+            // Zeige die Fähigkeiten an
+            abilities.forEach((ability, index) => {
+                if (ability && ability !== 'Leer') {
+                    const abilityBadge = createElement('div', { 
+                        class: `ability-badge ${index === 0 ? 'primary' : index === 2 ? 'hidden' : ''}`,
+                        title: ability // Hier könnten wir eine Beschreibung hinzufügen
+                    });
+                    abilityBadge.textContent = ability;
+                    abilitiesList.appendChild(abilityBadge);
+                }
+            });
+        }
     }
 
     /**

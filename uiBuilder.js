@@ -17,9 +17,8 @@ class UIBuilder {
      */
     createPokemonSlot(index) {
         const slot = createElement('div', { class: 'pokemon-slot' });
-        
-        const slotTitle = createElement('div');
-        slotTitle.textContent = `Slot ${index + 1}`;
+    
+        // Die Slot-Überschrift ("Slot X") wird entfernt
         
         // Erstelle benutzerdefinierten Dropdown statt select
         const selectContainer = createElement('div', { 
@@ -44,17 +43,17 @@ class UIBuilder {
         // Event-Listener für das Öffnen/Schließen des Dropdowns
         selectSelected.addEventListener('click', () => this.app.toggleDropdown(index));
         
-        // Bild und Typen Container
-        const imageTypeContainer = createElement('div', { class: 'pokemon-image-container' });
+        // Bild und Typen Container - angepasstes Layout
+        const imageTypeContainer = createElement('div', { class: 'pokemon-image-container compressed' });
         const imageContainer = createElement('div', { class: 'pokemon-image', id: `pokemon-image-${index}` });
         const typesContainer = createElement('div', { class: 'pokemon-types', id: `pokemon-types-${index}` });
         imageTypeContainer.appendChild(imageContainer);
         imageTypeContainer.appendChild(typesContainer);
         
-        // Container für Details (Name, Würfel und Level-Eingabe)
-        const detailsContainer = createElement('div', { class: 'pokemon-details-container' });
+        // Container für Details (Name, Würfel und Level-Eingabe) - angepasstes Layout
+        const detailsContainer = createElement('div', { class: 'pokemon-details-container compressed' });
         
-        // Linke Seite: Name und Würfel
+        // Linke Seite: Name (ohne Nummer) und Würfel
         const infoContainer = createElement('div', { class: 'pokemon-info' });
         const pokemonName = createElement('div', { class: 'pokemon-name', id: `pokemon-name-${index}` });
         const diceContainer = createElement('div', { 
@@ -64,8 +63,8 @@ class UIBuilder {
         infoContainer.appendChild(pokemonName);
         infoContainer.appendChild(diceContainer);
         
-        // Rechte Seite: Level-Eingabe
-        const levelContainer = createElement('div', { class: 'pokemon-level-container hidden' });
+        // Rechte Seite: Level-Eingabe - nach oben verschoben
+        const levelContainer = createElement('div', { class: 'pokemon-level-container hidden compressed' });
         const levelLabel = createElement('div', { class: 'pokemon-level-label' });
         levelLabel.textContent = 'Level';
         const levelInput = createElement('input', { 
@@ -99,25 +98,28 @@ class UIBuilder {
         
         // Stats-Container für die Statuswerte
         const statsContainer = createElement('div', { 
-            class: 'pokemon-stats-container hidden', 
+            class: 'pokemon-stats-container hidden compressed', 
             id: `pokemon-stats-${index}` 
         });
         
         // Attacken-Container für die Attacken hinzufügen
         const movesContainer = this.createMovesContainer(index);
         movesContainer.classList.add('hidden'); // Verstecken, bis ein Pokémon ausgewählt ist
+        movesContainer.classList.add('compressed'); // Komprimiertes Layout
         
-        // EXP-Gain Container hinzufügen
+        // EXP-Gain Container hinzufügen - angepasstes Layout für die Buttons
         const expGainContainer = this.createExpGainSection(index);
         
-        // Füge alles zum Slot hinzu
-        slot.appendChild(slotTitle);
+        // Füge alles zum Slot hinzu - angepasste Reihenfolge
         slot.appendChild(selectContainer);
         slot.appendChild(imageTypeContainer);
         slot.appendChild(detailsContainer);
         slot.appendChild(statsContainer);
         slot.appendChild(expGainContainer);
         slot.appendChild(movesContainer);
+
+        const abilitiesContainer = this.createAbilitiesContainer(index);
+        slot.appendChild(abilitiesContainer);
         
         return slot;
     }
@@ -577,17 +579,17 @@ class UIBuilder {
      */
     createExpGainSection(pokemonIndex) {
         const expGainContainer = createElement('div', {
-            class: 'exp-gain-container hidden',
+            class: 'exp-gain-container hidden compressed',
             id: `exp-gain-container-${pokemonIndex}`
         });
         
         // Überschrift und Button-Container
-        const expHeader = createElement('div', { class: 'exp-header' });
+        const expHeader = createElement('div', { class: 'exp-header compressed' });
         
-        // Button-Container (Reihenfolge umgekehrt: Randomize links, Duplizieren rechts)
-        const buttonContainer = createElement('div', { class: 'button-container' });
+        // Button-Container - Angepasst für rechtsbündige Ausrichtung
+        const buttonContainer = createElement('div', { class: 'button-container right-aligned' });
         
-        // Randomize Stats-Button hinzufügen (jetzt zuerst, erscheint rechts wegen flex-direction: row-reverse)
+        // Randomize Stats-Button hinzufügen
         const randomizeButton = createElement('button', {
             class: 'randomize-button',
             id: `randomize-btn-${pokemonIndex}`,
@@ -600,9 +602,9 @@ class UIBuilder {
             this.app.randomizeStats(pokemonIndex);
         });
         
-        // Duplizieren-Button hinzufügen (jetzt als zweites, erscheint links wegen flex-direction: row-reverse)
+        // Duplizieren-Button hinzufügen - Angepasst für neue Position
         const duplicateButton = createElement('button', {
-            class: 'duplicate-button',
+            class: 'duplicate-button right-aligned',
             id: `duplicate-btn-${pokemonIndex}`,
             title: 'Pokémon in den nächsten freien Slot duplizieren'
         });
@@ -613,9 +615,9 @@ class UIBuilder {
             this.app.duplicatePokemon(pokemonIndex);
         });
         
-        // Buttons zum Container hinzufügen (Randomize zuerst, Duplizieren danach)
-        buttonContainer.appendChild(randomizeButton);
+        // Buttons zum Container hinzufügen 
         buttonContainer.appendChild(duplicateButton);
+        buttonContainer.appendChild(randomizeButton);
         
         // Header zusammenbauen - Nur die Buttons
         expHeader.appendChild(buttonContainer);
@@ -646,8 +648,8 @@ class UIBuilder {
         expInputContainer.appendChild(expGainInput);
         expInputContainer.appendChild(originalExpInput);
         
-        // Button-Container für Multiplikatoren
-        const expMultiplierContainer = createElement('div', { class: 'exp-multiplier-container' });
+        // Button-Container für Multiplikatoren - ANGEPASST für eine Reihe
+        const expMultiplierContainer = createElement('div', { class: 'exp-multiplier-container single-row' });
         
         // Trainer-Button (x1.5)
         const trainerButton = createElement('button', {
@@ -658,14 +660,14 @@ class UIBuilder {
         });
         trainerButton.textContent = 'Trainer (x1.5)';
         
-        // Arena-Button (x2)
+        // Arena-Button (x2) - Text geändert von "Arena und co" zu "Arena"
         const arenaButton = createElement('button', {
             class: 'exp-multiplier-button',
             id: `exp-arena-${pokemonIndex}`,
             'data-multiplier': '2',
             'data-active': 'false'
         });
-        arenaButton.textContent = 'Arena und co (x2)';
+        arenaButton.textContent = 'Arena (x2)';
         
         // Boss-Button (x3)
         const bossButton = createElement('button', {
@@ -687,5 +689,187 @@ class UIBuilder {
         
         return expGainContainer;
     }
+
+    createAbilitiesContainer(index) {
+        const abilitiesContainer = createElement('div', {
+            class: 'pokemon-abilities-container hidden compressed',
+            id: `pokemon-abilities-${index}`
+        });
+        
+        // Header mit Titel
+        const abilitiesHeader = createElement('div', { class: 'abilities-header' });
+        
+        const abilitiesTitle = createElement('div', { class: 'abilities-title' });
+        abilitiesTitle.textContent = 'Fähigkeiten';
+        
+        // Header zusammenbauen
+        abilitiesHeader.appendChild(abilitiesTitle);
+        
+        // Container für die drei Fähigkeiten
+        const abilitiesList = createElement('div', { class: 'abilities-list' });
+        
+        // Wir erstellen 3 Fähigkeiten-Slots (entsprechend dem Array aus abilityService.js)
+        for (let i = 0; i < 3; i++) {
+            const abilitySlot = createElement('div', { 
+                class: 'ability-slot',
+                id: `ability-slot-${index}-${i}`
+            });
+            abilitiesList.appendChild(abilitySlot);
+        }
+        
+        abilitiesContainer.appendChild(abilitiesHeader);
+        abilitiesContainer.appendChild(abilitiesList);
+        
+        return abilitiesContainer;
+    };
+
+    createAbilityTooltips() {        
+        // Initialisiere die Tooltips für alle vorhandenen Fähigkeiten
+        this.setupAbilityTooltips();
+    };
     
+    setupAbilityTooltips() {
+        // Warten auf das vollständige Laden des DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.initializeAbilityTooltips();
+            });
+        } else {
+            this.initializeAbilityTooltips();
+        }
+        
+        // Beobachte DOM-Änderungen, um neue Fähigkeiten-Badges zu erkennen
+        const observer = new MutationObserver((mutations) => {
+            let hasNewAbilities = false;
+            
+            mutations.forEach(mutation => {
+                // Prüfe, ob neue Fähigkeits-Badges hinzugefügt wurden
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) { // Element node
+                            if (node.classList && node.classList.contains('ability-badge')) {
+                                hasNewAbilities = true;
+                            } else if (node.querySelectorAll) {
+                                const badges = node.querySelectorAll('.ability-badge');
+                                if (badges.length > 0) {
+                                    hasNewAbilities = true;
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+            
+            if (hasNewAbilities) {
+                this.initializeAbilityTooltips();
+            }
+        });
+        
+        // Starte die Beobachtung des gesamten Dokuments für Änderungen
+        observer.observe(document.body, { 
+            childList: true, 
+            subtree: true 
+        });
+    };
+
+    initializeAbilityTooltips() {
+        // Selektiere alle Fähigkeits-Badges im Dokument
+        const abilityBadges = document.querySelectorAll('.ability-badge');
+        
+        abilityBadges.forEach(badge => {
+            // Prüfe, ob das Badge bereits einen Tooltip hat
+            if (!badge.hasAttribute('data-tooltip') && badge.textContent.trim() !== 'Leer') {
+                const abilityName = badge.textContent.trim();
+                
+                // Hole die Beschreibung der Fähigkeit mit der getAbilityDescription-Funktion
+                let description = '';
+                try {
+                    if (typeof getAbilityDescription === 'function') {
+                        description = getAbilityDescription(abilityName);
+                    } else if (typeof window.getAbilityDescription === 'function') {
+                        description = window.getAbilityDescription(abilityName);
+                    }
+                    console.log(description);
+                } catch (error) {
+                    console.error(`Fehler beim Abrufen der Beschreibung für ${abilityName}:`, error);
+                    description = 'Keine Beschreibung verfügbar.';
+                }
+                
+                // Setze den Tooltip-Text
+                if (description && description !== '') {
+                    badge.setAttribute('data-tooltip', description);
+                } else {
+                    badge.setAttribute('data-tooltip', 'Keine Beschreibung verfügbar.');
+                }
+                
+                // Entferne bestehende Event-Listener durch Klonen des Elements
+                const newBadge = badge.cloneNode(true);
+                badge.parentNode.replaceChild(newBadge, badge);
+                
+                // Füge die Event-Listener zum neuen Element hinzu
+                newBadge.addEventListener('mouseenter', () => {
+                    // Warte einen Moment, bis der Tooltip sichtbar ist
+                    setTimeout(() => {
+                        // Prüfe die Position des Tooltips
+                        const badgeRect = newBadge.getBoundingClientRect();
+                        const tooltipText = newBadge.getAttribute('data-tooltip') || '';
+                        
+                        // Berechne die erwartete Position des Tooltips basierend auf der Textlänge
+                        const viewportWidth = window.innerWidth;
+                        const badgeCenter = badgeRect.left + (badgeRect.width / 2);
+                        
+                        // Bestimme die Breite des Tooltips basierend auf der Textlänge
+                        // Kürzere Texte verwenden den tatsächlichen Platzbedarf, längere bekommen die maximale Breite
+                        let tooltipWidth;
+                        
+                        if (tooltipText.length < 50) {
+                            // Für kurze Texte: Berechne die ungefähre Breite
+                            tooltipWidth = Math.min(tooltipText.length * 7 + 24, 300); // 7px pro Zeichen + Padding
+                        } else {
+                            // Für lange Texte: Verwende die maximale Breite
+                            tooltipWidth = 300; // Maximale Breite aus CSS
+                        }
+                        
+                        // Stelle sicher, dass für sehr lange Texte die Maximale Breite verwendet wird
+                        if (tooltipText.length > 100) {
+                            tooltipWidth = 300;
+                        }
+                        
+                        // Überprüfe, ob der Tooltip links oder rechts über den Viewport hinausragen würde
+                        // Links
+                        if (badgeCenter - (tooltipWidth / 2) < 10) {
+                            // Wenn der Tooltip links über den Bildschirmrand hinausragt
+                            newBadge.style.setProperty('--tooltip-left', '0');
+                            newBadge.style.setProperty('--tooltip-right', 'auto');
+                            newBadge.style.setProperty('--tooltip-transform', 'translateX(0)');
+                        }
+                        // Rechts
+                        else if (badgeCenter + (tooltipWidth / 2) > viewportWidth - 10) {
+                            // Wenn der Tooltip rechts über den Bildschirmrand hinausragt
+                            newBadge.style.setProperty('--tooltip-left', 'auto');
+                            newBadge.style.setProperty('--tooltip-right', '0');
+                            newBadge.style.setProperty('--tooltip-transform', 'translateX(0)');
+                        }
+                        // In der Mitte (Standard)
+                        else {
+                            // Standard zentrierte Position
+                            newBadge.style.setProperty('--tooltip-left', '50%');
+                            newBadge.style.setProperty('--tooltip-right', 'auto');
+                            newBadge.style.setProperty('--tooltip-transform', 'translateX(-50%)');
+                        }
+                    }, 10);
+                });
+                
+                // Zurücksetzen beim Verlassen des Elements
+                newBadge.addEventListener('mouseleave', () => {
+                    // Setze die Variablen zurück zu den Standardwerten
+                    newBadge.style.removeProperty('--tooltip-left');
+                    newBadge.style.removeProperty('--tooltip-right');
+                    newBadge.style.removeProperty('--tooltip-transform');
+                });
+            }
+        });
+        
+        console.log(`Tooltips für ${abilityBadges.length} Fähigkeits-Badges initialisiert`);
+    };
 }
