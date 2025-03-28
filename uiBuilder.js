@@ -18,8 +18,6 @@ class UIBuilder {
     createPokemonSlot(index) {
         const slot = createElement('div', { class: 'pokemon-slot' });
     
-        // Die Slot-Überschrift ("Slot X") wird entfernt
-        
         // Erstelle benutzerdefinierten Dropdown statt select
         const selectContainer = createElement('div', { 
             class: 'custom-select-container',
@@ -62,6 +60,24 @@ class UIBuilder {
         });
         infoContainer.appendChild(pokemonName);
         infoContainer.appendChild(diceContainer);
+        
+        // Duplizieren-Button in den Dice-Container verschieben
+        // Erstelle den Button, aber verstecke ihn initial
+        const duplicateButton = createElement('button', {
+            class: 'duplicate-button hidden',
+            id: `duplicate-btn-${index}`,
+            title: 'Pokémon in den nächsten freien Slot duplizieren'
+        });
+        duplicateButton.textContent = 'Duplizieren';
+        duplicateButton.style.display = 'none'; // Initial versteckt
+        
+        // Event-Listener für den Duplizieren-Button
+        duplicateButton.addEventListener('click', () => {
+            this.app.duplicatePokemon(index);
+        });
+        
+        // Duplizieren-Button dem diceContainer hinzufügen
+        diceContainer.appendChild(duplicateButton);
         
         // Rechte Seite: Level-Eingabe - nach oben verschoben
         const levelContainer = createElement('div', { class: 'pokemon-level-container hidden compressed' });
@@ -117,7 +133,7 @@ class UIBuilder {
         slot.appendChild(statsContainer);
         slot.appendChild(expGainContainer);
         slot.appendChild(movesContainer);
-
+    
         const abilitiesContainer = this.createAbilitiesContainer(index);
         slot.appendChild(abilitiesContainer);
         
@@ -602,21 +618,34 @@ class UIBuilder {
             this.app.randomizeStats(pokemonIndex);
         });
         
-        // Duplizieren-Button hinzufügen - Angepasst für neue Position
-        const duplicateButton = createElement('button', {
-            class: 'duplicate-button right-aligned',
-            id: `duplicate-btn-${pokemonIndex}`,
-            title: 'Pokémon in den nächsten freien Slot duplizieren'
+        // NEUE BUTTONS: +10% und -10% für Statuswerte
+        const increaseButton = createElement('button', {
+            class: 'stat-modifier-button increase-button',
+            id: `increase-btn-${pokemonIndex}`,
+            title: 'Alle Statuswerte um 10% erhöhen'
         });
-        duplicateButton.textContent = 'Duplizieren';
+        increaseButton.textContent = '+10%';
         
-        // Event-Listener für den Duplizieren-Button
-        duplicateButton.addEventListener('click', () => {
-            this.app.duplicatePokemon(pokemonIndex);
+        // Event-Listener für den +10% Button
+        increaseButton.addEventListener('click', () => {
+            this.app.modifyAllStats(pokemonIndex, 1.1);
         });
         
-        // Buttons zum Container hinzufügen 
-        buttonContainer.appendChild(duplicateButton);
+        const decreaseButton = createElement('button', {
+            class: 'stat-modifier-button decrease-button',
+            id: `decrease-btn-${pokemonIndex}`,
+            title: 'Alle Statuswerte um 10% verringern'
+        });
+        decreaseButton.textContent = '-10%';
+        
+        // Event-Listener für den -10% Button
+        decreaseButton.addEventListener('click', () => {
+            this.app.modifyAllStats(pokemonIndex, 0.9);
+        });
+        
+        // Buttons zum Container hinzufügen (in der gewünschten Reihenfolge)
+        buttonContainer.appendChild(increaseButton);
+        buttonContainer.appendChild(decreaseButton);
         buttonContainer.appendChild(randomizeButton);
         
         // Header zusammenbauen - Nur die Buttons

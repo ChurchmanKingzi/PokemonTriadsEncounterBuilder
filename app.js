@@ -873,6 +873,7 @@ class PokemonTeamBuilder {
         const imageContainer = document.getElementById(`pokemon-image-${slot}`);
         const nameContainer = document.getElementById(`pokemon-name-${slot}`);
         const diceContainer = document.getElementById(`pokemon-dice-${slot}`);
+        const duplicateButton = document.getElementById(`duplicate-btn-${slot}`); // Duplizieren-Button
         const levelInput = document.getElementById(`pokemon-level-${slot}`);
         const levelContainer = levelInput.parentNode; // Der Level-Container
         const statsContainer = document.getElementById(`pokemon-stats-${slot}`);
@@ -907,7 +908,17 @@ class PokemonTeamBuilder {
             }
         }
         
+        // Duplizieren-Button zurück in den dice-Container einfügen (falls er entfernt wurde)
+        if (duplicateButton && !diceContainer.contains(duplicateButton)) {
+            diceContainer.appendChild(duplicateButton);
+        }
+        
         if (!pokemonData) {
+            // Kein Pokémon ausgewählt - verstecke den Duplizieren-Button
+            if (duplicateButton) {
+                duplicateButton.style.display = 'none';
+            }
+            
             // Setze Level-Input zurück und blende ihn aus
             levelInput.value = '5';
             levelInput.setAttribute('data-prev-value', '5');
@@ -929,6 +940,11 @@ class PokemonTeamBuilder {
                 newMovesetButton.classList.add('disabled');
             }
             return;
+        }
+        
+        // Pokémon wurde ausgewählt - zeige den Duplizieren-Button an
+        if (duplicateButton) {
+            duplicateButton.style.display = 'block';
         }
         
         // Bild anzeigen
@@ -955,11 +971,6 @@ class PokemonTeamBuilder {
         name.textContent = pokemonData.germanName || pokemonData.name;
         nameContainer.appendChild(name);
         
-        // Diese Zeilen entfernen, um die Pokémon-Nummer zu entfernen
-        // const number = createElement('div', { class: 'pokemon-number' });
-        // number.textContent = `#${String(pokemonData.id).padStart(4, '0')}`;
-        // nameContainer.appendChild(number);
-        
         // Würfel anzeigen - Anpassungen für kompaktes Layout
         const diceInfo = DiceCalculator.determineDiceType(pokemonData);
         if (diceInfo) {
@@ -969,6 +980,11 @@ class PokemonTeamBuilder {
             });
             diceElement.textContent = diceInfo.diceType;
             diceContainer.appendChild(diceElement);
+        }
+        
+        // Füge den Duplizieren-Button wieder an den diceContainer an, falls er entfernt wurde
+        if (duplicateButton && !diceContainer.contains(duplicateButton)) {
+            diceContainer.appendChild(duplicateButton);
         }
         
         // Level berechnen und setzen
@@ -1448,7 +1464,84 @@ class PokemonTeamBuilder {
             updateInitiativeList(this);
         }
     }
+
+    /**
+     * Modifiziert alle Statuswerte eines Pokémon um einen bestimmten Faktor
+     * @param {number} pokemonIndex - Index des Slots
+     * @param {number} factor - Multiplikator für die Statuswerte (z.B. 1.1 für +10%, 0.9 für -10%)
+     */
+    modifyAllStats(pokemonIndex, factor) {
+        // Prüfe, ob das Pokémon existiert
+        const pokemonSelect = document.getElementById(`pokemon-select-${pokemonIndex}`);
+        if (!pokemonSelect) return;
+        
+        const pokemonId = pokemonSelect.getAttribute('data-value');
+        if (!pokemonId) return; // Kein Pokémon ausgewählt
+        
+        // Hole alle Statuswerte
+        const hpInput = document.getElementById(`hp-${pokemonIndex}`);
+        const attackInput = document.getElementById(`attack-${pokemonIndex}`);
+        const defenseInput = document.getElementById(`defense-${pokemonIndex}`);
+        const specialAttackInput = document.getElementById(`specialAttack-${pokemonIndex}`);
+        const specialDefenseInput = document.getElementById(`specialDefense-${pokemonIndex}`);
+        const speedInput = document.getElementById(`speed-${pokemonIndex}`);
+        
+        // Prüfe, ob alle Inputs existieren
+        if (!hpInput || !attackInput || !defenseInput || !specialAttackInput || !specialDefenseInput || !speedInput) {
+            console.error('Statusfelder nicht gefunden');
+            return;
+        }
+        
+        // Aktuelle Werte auslesen
+        const currentHP = parseInt(hpInput.value) || 0;
+        const currentAttack = parseInt(attackInput.value) || 0;
+        const currentDefense = parseInt(defenseInput.value) || 0;
+        const currentSpecialAttack = parseInt(specialAttackInput.value) || 0;
+        const currentSpecialDefense = parseInt(specialDefenseInput.value) || 0;
+        const currentSpeed = parseInt(speedInput.value) || 0;
+        
+        // Neue Werte berechnen (aufgerundet auf die nächste ganze Zahl)
+        const newHP = Math.ceil(currentHP * factor);
+        const newAttack = Math.ceil(currentAttack * factor);
+        const newDefense = Math.ceil(currentDefense * factor);
+        const newSpecialAttack = Math.ceil(currentSpecialAttack * factor);
+        const newSpecialDefense = Math.ceil(currentSpecialDefense * factor);
+        const newSpeed = Math.ceil(currentSpeed * factor);
+        
+        // Setze die neuen Werte in die Inputs
+        hpInput.value = newHP;
+        attackInput.value = newAttack;
+        defenseInput.value = newDefense;
+        specialAttackInput.value = newSpecialAttack;
+        specialDefenseInput.value = newSpecialDefense;
+        speedInput.value = newSpeed;
+        
+        // Speichere die neuen Werte auch als vorherige Werte für die Validierung
+        hpInput.setAttribute('data-prev-value', newHP);
+        attackInput.setAttribute('data-prev-value', newAttack);
+        defenseInput.setAttribute('data-prev-value', newDefense);
+        specialAttackInput.setAttribute('data-prev-value', newSpecialAttack);
+        specialDefenseInput.setAttribute('data-prev-value', newSpecialDefense);
+        speedInput.setAttribute('data-prev-value', newSpeed);
+        
+        // Visuelles Feedback für den Benutzer
+        const statsContainer = document.getElementById(`pokemon-stats-${pokemonIndex}`);
+        if (statsContainer) {
+            statsContainer.classList.add('stats-randomized');
+            
+            // Nach kurzer Zeit die Hervorhebung entfernen
+            setTimeout(() => {
+                statsContainer.classList.remove('stats-randomized');
+            }, 1000);
+        }
+        
+        // Update der Initiative-Liste, falls vorhanden
+        if (typeof updateInitiativeList === 'function') {
+            updateInitiativeList(this);
+        }
+    }
 }
+
 
 // Starte die Anwendung, wenn das DOM geladen ist
 document.addEventListener('DOMContentLoaded', () => {

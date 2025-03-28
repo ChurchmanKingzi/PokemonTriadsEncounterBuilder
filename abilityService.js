@@ -10,7 +10,7 @@
  */
 function getAbilities(pokemonID) {
   // Überprüfen, ob die Pokemon-ID im gültigen Bereich liegt
-  if (pokemonID < 1 || pokemonID > 1025) {
+  if (pokemonID < 1 || pokemonID > 1025 && pokemonID <= 10000 || pokemonID > 10277) {
     throw new Error("Ungültige Pokemon-ID. Muss zwischen 1 und 1025 liegen.");
   }
 
@@ -47,11 +47,11 @@ function getAbilities(pokemonID) {
     case 15:
       return["Hexaplaga", "Superschütze", "Facettenauge"];
     case 16:
-      return["Adlerauge", "Brustbeiter", "Taumelschritt"];
+      return["Adlerauge", "Brustbieter", "Taumelschritt"];
     case 17:
-      return["Adlerauge", "Brustbeiter", "Taumelschritt"];
+      return["Adlerauge", "Brustbieter", "Taumelschritt"];
     case 18:
-      return["Adlerauge", "Brustbeiter", "Taumelschritt"];
+      return["Adlerauge", "Brustbieter", "Taumelschritt"];
     case 19:
       return["Angsthase", "Adrenalin", "Völlerei"];
     case 20:
@@ -77,13 +77,13 @@ function getAbilities(pokemonID) {
     case 30:
       return["Giftdorn", "Rivalität", "Übereifer"];
     case 31:
-      return["Giftdorn", "Rivalität", "Rohe Gewalt"];
+      return["Majestät", "Rivalität", "Rohe Gewalt"];
     case 32:
       return["Giftdorn", "Rivalität", "Angsthase"];
     case 33:
       return["Giftdorn", "Rivalität", "Übereifer"];
     case 34:
-      return["Giftdorn", "Rivalität", "Rohe Gewalt"];
+      return["Majestät", "Rivalität", "Rohe Gewalt"];
     case 35:
       return["Charmebolzen", "Magieschild", "Tänzer"];
     case 36:
@@ -310,7 +310,7 @@ function getAbilities(pokemonID) {
         return["Chlorophyll", "Floraschild", "Belebekraft"];
     case 115:
         //Kangama
-        return["Frühwecker", "Rauflust", "Familienbande"];
+        return["Frühwecker", "Rauflust", "Konzentrator"];
     case 116:
         //Seeper
         return["Wassertempo", "Superschütze", "Analyse"];
@@ -508,7 +508,7 @@ function getAbilities(pokemonID) {
         return["Statik", "Fellkleid", "Flauschigkeit"];
     case 181:
         //Ampharos
-        return["Statik", "Plus", "Überbrückung"];
+        return["Statik", "Plus", "Erleuchtung"];
     case 182:
         //Blubella
         return["Chlorophyll", "Tänzer", "Planzengabe"];
@@ -661,7 +661,7 @@ function getAbilities(pokemonID) {
         return["Speckschicht", "Sandschleier", "Sandgewalt"];
     case 232:
         //Donphan
-        return["Speckschicht", "Sandschleier", "Sandgewalt"];
+        return["Speckschicht", "Robustheit", "Sandgewalt"];
     case 233:
         //Porygon2
         return["Erfassen", "Download", "Analyse"];
@@ -1018,7 +1018,7 @@ function getAbilities(pokemonID) {
         return["Multischuppe", "Notschutz", "Unbeugsamkeit"];
     case 351:
         //Formeo
-        return["Prognose", "Wolke Sieben", "Klimaschutz"];
+        return["Prognose", "Schwebe", "Klimaschutz"];
     case 352:
         //Kecleon
         return["Farbwechsel", "Saugnapf", "Wandlungskunst"];
@@ -1093,7 +1093,7 @@ function getAbilities(pokemonID) {
         return["Neutraltorso", "Leichtmetall", "Schwebe"];
     case 376:
         //Metagross
-        return["Neutraltorso", "Leichtmetall", "Krallenwucht"];
+        return["Neutraltorso", "Leichtmetall", "Telepathie"];
     case 377:
         //Regirock
         return["Neutraltorso", "Steinhaupt", "Robustheit"];
@@ -1467,1057 +1467,1616 @@ function getAbilities(pokemonID) {
         //Flambirex
         return["Großbrand", "Achtlos", "Speckschicht"];
     case 501:
-      return ["Ottaro", "Leer", "Leer"];
+      return ["Sturzbach", "Wassertempo", "Scharfkantig"];
     case 502:
-      return ["Zwottronin", "Leer", "Leer"];
+      return ["Sturzbach", "Wassertempo", "Scharfkantig"];
     case 503:
-      return ["Admurai", "Leer", "Leer"];
+      return ["Sturzbach", "Panzerhaut", "Scharfkantig"];
     case 504:
-      return ["Nagelotz", "Leer", "Leer"];
+      return ["Adlerauge", "Angsthase", "Analyse"];
     case 505:
-      return ["Kukmarda", "Leer", "Leer"];
+      return ["Adlerauge", "Angsthase", "Analyse"];
     case 506:
-      return ["Yorkleff", "Leer", "Leer"];
+      return ["Mitnahme", "Munterkeit", "Wachhund"];
     case 507:
-      return ["Terribark", "Leer", "Leer"];
+      return ["Bedroher", "Rauflust", "Wachhund"];
     case 508:
-      return ["Bissbark", "Leer", "Leer"];
+      return ["Bedroher", "Rauflust", "Wachhund"];
     case 509:
-      return ["Felilou", "Leer", "Leer"];
+      return ["Flexibilität", "Entlastung", "Strolch"];
     case 510:
-      return ["Kleoparda", "Leer", "Leer"];
+      return ["Flexibilität", "Entlastung", "Strolch"];
     case 511:
-      return ["Vegimak", "Leer", "Leer"];
+      return ["Chlorophyll", "Völlerei", "Notdünger"];
     case 512:
-      return ["Vegichita", "Leer", "Leer"];
+      return ["Chlorophyll", "Völlerei", "Notdünger"];
     case 513:
-      return ["Grillmak", "Leer", "Leer"];
+      return ["Flammkörper", "Völlerei", "Großbrand"];
     case 514:
-      return ["Grillchita", "Leer", "Leer"];
+      return ["Flammkörper", "Völlerei", "Großbrand"];
     case 515:
-      return ["Sodamak", "Leer", "Leer"];
+      return ["Hydration", "Völlerei", "Sturzbach"];
     case 516:
-      return ["Sodachita", "Leer", "Leer"];
+      return ["Hydration", "Völlerei", "Sturzbach"];
     case 517:
-      return ["Somniam", "Leer", "Leer"];
+      return ["Vorwarnung", "Synchro", "Telepathie"];
     case 518:
-      return ["Somnivora", "Leer", "Leer"];
+      return ["Vorwarnung", "Synchro", "Telepathie"];
     case 519:
-      return ["Dusselgurr", "Leer", "Leer"];
+      return ["Brustbieter", "Taumelschritt", "Adlerauge"];
     case 520:
-      return ["Navitaub", "Leer", "Leer"];
+      return ["Brustbieter", "Rivalität", "Adlerauge"];
     case 521:
-      return ["Fasasnob", "Leer", "Leer"];
+      return ["Brustbieter", "Rivalität", "Adlerauge"];
     case 522:
-      return ["Elezeba", "Leer", "Leer"];
+      return ["Blitzfänger", "Vegetarier", "Starthilfe"];
     case 523:
-      return ["Zebritz", "Leer", "Leer"];
+      return ["Blitzfänger", "Vegetarier", "Starthilfe"];
     case 524:
-      return ["Kiesling", "Leer", "Leer"];
+      return ["Robustheit", "Bruchrüstung", "Felskern"];
     case 525:
-      return ["Sedimantur", "Leer", "Leer"];
+      return ["Robustheit", "Bruchrüstung", "Felskern"];
     case 526:
-      return ["Brockoloss", "Leer", "Leer"];
+      return ["Robustheit", "Sandsturm", "Felskern"];
     case 527:
-      return ["Fleknoil", "Leer", "Leer"];
+      return ["Unkenntnis", "Tollpatsch", "Wankelmut"];
     case 528:
-      return ["Fletiamo", "Leer", "Leer"];
+      return ["Unkenntnis", "Tollpatsch", "Wankelmut"];
     case 529:
-      return ["Rotomurf", "Leer", "Leer"];
+      return ["Sandscharrer", "Sandgewalt", "Krallenwucht"];
     case 530:
-      return ["Stalobor", "Leer", "Leer"];
+      return ["Sandscharrer", "Sandgewalt", "Krallenwucht"];
     case 531:
-      return ["Ohrdoch", "Leer", "Leer"];
+      return ["Heilherz", "Belebekraft", "Tollpatsch"];
     case 532:
-      return ["Praktibalk", "Leer", "Leer"];
+      return ["Adrenalin", "Rohe Gewalt", "Eisenfaust"];
     case 533:
-      return ["Strepoli", "Leer", "Leer"];
+      return ["Adrenalin", "Rohe Gewalt", "Eisenfaust"];
     case 534:
-      return ["Meistagrif", "Leer", "Leer"];
+      return ["Adrenalin", "Rohe Gewalt", "Eisenfaust"];
     case 535:
-      return ["Schallquap", "Leer", "Leer"];
+      return ["Wassertempo", "Hydration", "H2O-Absorber"];
     case 536:
-      return ["Mebrana", "Leer", "Leer"];
+      return ["Wassertempo", "Hydration", "H2O-Absorber"];
     case 537:
-      return ["Branawarz", "Leer", "Leer"];
+      return ["Wassertempo", "Giftgriff", "H2O-Absorber"];
     case 538:
-      return ["Jiutesto", "Leer", "Leer"];
+      return ["Adrenalin", "Konzentrator", "Überbrückung"];
     case 539:
-      return ["Karadonis", "Leer", "Leer"];
+      return ["Robustheit", "Konzentrator", "Überbrückung"];
     case 540:
-      return ["Strawickl", "Leer", "Leer"];
+      return ["Hexaplaga", "Chlorophyll", "Partikelschutz"];
     case 541:
-      return ["Folikon", "Leer", "Leer"];
+      return ["Floraschild", "Chlorophyll", "Partikelschutz"];
     case 542:
-      return ["Matrifol", "Leer", "Leer"];
+      return ["Hexaplaga", "Chlorophyll", "Tänzer"];
     case 543:
-      return ["Toxiped", "Leer", "Leer"];
+      return ["Giftdorn", "Hexaplaga", "Temposchub"];
     case 544:
-      return ["Rollum", "Leer", "Leer"];
+      return ["Giftdorn", "Hexaplaga", "Temposchub"];
     case 545:
-      return ["Cerapendra", "Leer", "Leer"];
+      return ["Giftdorn", "Hexaplaga", "Temposchub"];
     case 546:
-      return ["Waumboll", "Leer", "Leer"];
+      return ["Schwebedurch", "Schwebe", "Chlorophyll"];
     case 547:
-      return ["Elfun", "Leer", "Leer"];
+      return ["Schwebedurch", "Schwebe", "Strolch"];
     case 548:
-      return ["Lilminip", "Leer", "Leer"];
+      return ["Chlorophyll", "Gleichmut", "Floraschild"];
     case 549:
-      return ["Dressella", "Leer", "Leer"];
+      return ["Chlorophyll", "Gleichmut", "Floraschild"];
     case 550:
-      return ["Barschuft", "Leer", "Leer"];
+      return ["Achtlos", "Wassertempo", "Hasenfuß"];
     case 551:
-      return ["Ganovil", "Leer", "Leer"];
+      return ["Bedroher", "Hochmut", "Kurzschluss"];
     case 552:
-      return ["Rokkaiman", "Leer", "Leer"];
+      return ["Bedroher", "Hochmut", "Kurzschluss"];
     case 553:
-      return ["Rabigator", "Leer", "Leer"];
+      return ["Bedroher", "Hochmut", "Kurzschluss"];
     case 554:
-      return ["Flampion", "Leer", "Leer"];
+      return ["Übereifer", "Konzentrator", "Rasanz"];
     case 555:
-      return ["Flampivian", "Leer", "Leer"];
+      return ["Rohe Gewalt", "Trance-Modus", "Eisenfaust"];
     case 556:
-      return ["Maracamba", "Leer", "Leer"];
+      return ["H2O-Absorber", "Chlorophyll", "Sturmsog"];
     case 557:
-      return ["Lithomith", "Leer", "Leer"];
+      return ["Robustheit", "Panzerhaut", "Bruchrüstung"];
     case 558:
-      return ["Castellith", "Leer", "Leer"];
+      return ["Robustheit", "Panzerhaut", "Bruchrüstung"];
     case 559:
-      return ["Zurrokex", "Leer", "Leer"];
+      return ["Expidermis", "Hochmut", "Strolch"];
     case 560:
-      return ["Irokex", "Leer", "Leer"];
+      return ["Expidermis", "Hochmut", "Bedroher"];
     case 561:
-      return ["Symvolara", "Leer", "Leer"];
+      return ["Wunderhaut", "Magieschild", "Magiespiegel"];
     case 562:
-      return ["Makabaja", "Leer", "Leer"];
+      return ["Mumie", "Rastlose Seele", "Schwebe"];
     case 563:
-      return ["Echnatoll", "Leer", "Leer"];
+      return ["Mumie", "Rastlose Seele", "Immunität"];
     case 564:
-      return ["Galapaflos", "Leer", "Leer"];
+      return ["Felskern", "Robustheit", "Wassertempo"];
     case 565:
-      return ["Karippas", "Leer", "Leer"];
+      return ["Felskern", "Robustheit", "Wassertempo"];
     case 566:
-      return ["Flapteryx", "Leer", "Leer"];
+      return ["Schwächling", "Adlerauge", "Rauflust"];
     case 567:
-      return ["Aeropteryx", "Leer", "Leer"];
+      return ["Schwächling", "Adlerauge", "Rauflust"];
     case 568:
-      return ["Unratütox", "Leer", "Leer"];
+      return ["Duftnote", "Klebekörper", "Finalschlag"];
     case 569:
-      return ["Deponitox", "Leer", "Leer"];
+      return ["Duftnote", "Bruchrüstung", "Finalschlag"];
     case 570:
-      return ["Zorua", "Leer", "Leer"];
+      return ["Trugbild", "Adrenalin", "Strolch"];
     case 571:
-      return ["Zoroark", "Leer", "Leer"];
+      return ["Trugbild", "Adrenalin", "Strolch"];
     case 572:
-      return ["Picochilla", "Leer", "Leer"];
+      return ["Charmebolzen", "Techniker", "Wertelink"];
     case 573:
-      return ["Chillabell", "Leer", "Leer"];
+      return ["Charmebolzen", "Techniker", "Wertelink"];
     case 574:
-      return ["Mollimorba", "Leer", "Leer"];
+      return ["Schnüffler", "Vorahnung", "Unbeugsamkeit"];
     case 575:
-      return ["Hypnomorba", "Leer", "Leer"];
+      return ["Schnüffler", "Vorahnung", "Wegsperre"];
     case 576:
-      return ["Morbitesse", "Leer", "Leer"];
+      return ["Schnüffler", "Vorahnung", "Wegsperre"];
     case 577:
-      return ["Monozyto", "Leer", "Leer"];
+      return ["Partikelschutz", "Magieschild", "Belebekraft"];
     case 578:
-      return ["Mitodos", "Leer", "Leer"];
+      return ["Partikelschutz", "Magieschild", "Belebekraft"];
     case 579:
-      return ["Zytomega", "Leer", "Leer"];
+      return ["Partikelschutz", "Magieschild", "Belebekraft"];
     case 580:
-      return ["Piccolente", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Hydration"];
     case 581:
-      return ["Swaroness", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Hydration"];
     case 582:
-      return ["Gelatini", "Leer", "Leer"];
+      return ["Eishaut", "Frostschicht", "Schneemantel"];
     case 583:
-      return ["Gelatroppo", "Leer", "Leer"];
+      return ["Eishaut", "Frostschicht", "Schneemantel"];
     case 584:
-      return ["Gelatwino", "Leer", "Leer"];
+      return ["Eishaut", "Frostschicht", "Schneemantel"];
     case 585:
-      return ["Sesokitz", "Leer", "Leer"];
+      return ["Chlorophyll", "Vegetarier", "Edelmut"];
     case 586:
-      return ["Kronjuwild", "Leer", "Leer"];
+      return ["Chlorophyll", "Vegetarier", "Edelmut"];
     case 587:
-      return ["Emolga", "Leer", "Leer"];
+      return ["Statik", "Starthilfe", "Backentaschen"];
     case 588:
-      return ["Laukaps", "Leer", "Leer"];
+      return ["Hexaplaga", "Expidermis", "Schildlos"];
     case 589:
-      return ["Cavalanzas", "Leer", "Leer"];
+      return ["Hexaplaga", "Panzerhaut", "Partikelschutz"];
     case 590:
-      return ["Tarnpignon", "Leer", "Leer"];
+      return ["Sporenwirt", "Belebekraft", "Glückspilz"];
     case 591:
-      return ["Hutsassa", "Leer", "Leer"];
+      return ["Sporenwirt", "Belebekraft", "Glückspilz"];
     case 592:
-      return ["Quabbel", "Leer", "Leer"];
+      return ["Schwebe", "Tastfluch", "H2O-Absorber"];
     case 593:
-      return ["Apoquallyp", "Leer", "Leer"];
+      return ["Schwebe", "Tastfluch", "H2O-Absorber"];
     case 594:
-      return ["Mamolida", "Leer", "Leer"];
+      return ["Heilherz", "Belebekraft", "Wassertempo"];
     case 595:
-      return ["Wattzapf", "Leer", "Leer"];
+      return ["Facettenauge", "Anspannung", "Hexaplaga"];
     case 596:
-      return ["Voltula", "Leer", "Leer"];
+      return ["Facettenauge", "Anspannung", "Hexaplaga"];
     case 597:
-      return ["Kastadur", "Leer", "Leer"];
+      return ["Eisenstachel", "Robustheit", "Rauhaut"];
     case 598:
-      return ["Tentantel", "Leer", "Leer"];
+      return ["Eisenstachel", "Robustheit", "Rauhaut"];
     case 599:
-      return ["Klikk", "Leer", "Leer"];
+      return ["Schwebe", "Plus", "Minus"];
     case 600:
-      return ["Kliklak", "Leer", "Leer"];
+      return ["Schwebe", "Plus", "Minus"];
     case 601:
-      return ["Klikdiklak", "Leer", "Leer"];
+      return ["Schwebe", "Plus", "Minus"];
     case 602:
-      return ["Zapplardin", "Leer", "Leer"];
+      return ["Schwebe", "Dynamo", "Statik"];
     case 603:
-      return ["Zapplalek", "Leer", "Leer"];
+      return ["Schwebe", "Dynamo", "Statik"];
     case 604:
-      return ["Zapplarang", "Leer", "Leer"];
+      return ["Schwebe", "Dynamo", "Statik"];
     case 605:
-      return ["Pygraulon", "Leer", "Leer"];
+      return ["Telepathie", "Synchro", "Analyse"];
     case 606:
-      return ["Megalon", "Leer", "Leer"];
+      return ["Telepathie", "Synchro", "Analyse"];
     case 607:
-      return ["Lichtel", "Leer", "Leer"];
+      return ["Erleuchtung", "Feuerfänger", "Flammkörper"];
     case 608:
-      return ["Laternecto", "Leer", "Leer"];
+      return ["Erleuchtung", "Feuerfänger", "Schwebe"];
     case 609:
-      return ["Skelabra", "Leer", "Leer"];
+      return ["Erleuchtung", "Feuerfänger", "Schwebe"];
     case 610:
-      return ["Dragoran", "Leer", "Leer"];
+      return ["Rivalität", "Überbrückung", "Anspannung"];
     case 611:
-      return ["Angirus", "Leer", "Leer"];
+      return ["Rivalität", "Überbrückung", "Anspannung"];
     case 612:
-      return ["Haxorus", "Leer", "Leer"];
+      return ["Rivalität", "Überbrückung", "Bedroher"];
     case 613:
-      return ["Cubchoo", "Leer", "Leer"];
+      return ["Schneemantel", "Schneescharrer", "Hasenfuß"];
     case 614:
-      return ["Beartic", "Leer", "Leer"];
+      return ["Schneemantel", "Schneescharrer", "Bedroher"];
     case 615:
-      return ["Cryogonal", "Leer", "Leer"];
+      return ["Schwebe", "Eishaut", "Frostschicht"];
     case 616:
-      return ["Ignivor", "Leer", "Leer"];
+      return ["Hexaplaga", "Panzerhaut", "Partikelschutz"];
     case 617:
-      return ["Ramoth", "Leer", "Leer"];
+      return ["Hydration", "Klebekörper", "Temposchub"];
     case 618:
-      return ["Schlappohr", "Leer", "Leer"];
+      return ["Statik", "Flexibilität", "Sandschleier"];
     case 619:
-      return ["Lin-Fu", "Leer", "Leer"];
+      return ["Konzentrator", "Belebekraft", "Achtlos"];
     case 620:
-      return ["Jak-o-Lantern", "Leer", "Leer"];
+      return ["Konzentrator", "Belebekraft", "Achtlos"];
     case 621:
-      return ["Shardrago", "Leer", "Leer"];
+      return ["Rauhaut", "Rohe Gewalt", "Überbrückung"];
     case 622:
-      return ["Golbit", "Leer", "Leer"];
+      return ["Eisenfaust", "Tollpatsch", "Schildlos"];
     case 623:
-      return ["Golgantes", "Leer", "Leer"];
+      return ["Eisenfaust", "Tollpatsch", "Schildlos"];
     case 624:
-      return ["Gladiantri", "Leer", "Leer"];
+      return ["Siegeswille", "Konzentrator", "Erzwinger"];
     case 625:
-      return ["Caesurio", "Leer", "Leer"];
+      return ["Siegeswille", "Konzentrator", "Erzwinger"];
     case 626:
-      return ["Bisofank", "Leer", "Leer"];
+      return ["Achtlos", "Vegetarier", "Kurzschluss"];
     case 627:
-      return ["Geronimatz", "Leer", "Leer"];
+      return ["Adlerauge", "Rohe Gewalt", "Übereifer"];
     case 628:
-      return ["Washakwil", "Leer", "Leer"];
+      return ["Adlerauge", "Rohe Gewalt", "Siegeswille"];
     case 629:
-      return ["Skallyk", "Leer", "Leer"];
+      return ["Brustbieter", "Partikelschutz", "Bruchrüstung"];
     case 630:
-      return ["Grypheldis", "Leer", "Leer"];
+      return ["Brustbieter", "Partikelschutz", "Bruchrüstung"];
     case 631:
-      return ["Furnifraß", "Leer", "Leer"];
+      return ["Völlerei", "Feuerfänger", "Pulverrauch"];
     case 632:
-      return ["Fermicula", "Leer", "Leer"];
+      return ["Hexaplaga", "Übereifer", "Partikelschutz"];
     case 633:
-      return ["Kapuno", "Leer", "Leer"];
+      return ["Übereifer", "Anspannung", "Drachenkiefer"];
     case 634:
-      return ["Duodino", "Leer", "Leer"];
+      return ["Übereifer", "Anspannung", "Drachenkiefer"];
     case 635:
-      return ["Trikephalo", "Leer", "Leer"];
+      return ["Schwebe", "Bedroher", "Drachenkiefer"];
     case 636:
-      return ["Ignivor", "Leer", "Leer"];
+      return ["Flammkörper", "Hexaplaga", "Dürre"];
     case 637:
-      return ["Ramoth", "Leer", "Leer"];
+      return ["Flammkörper", "Hexaplaga", "Dürre"];
     case 638:
-      return ["Kobalium", "Leer", "Leer"];
+      return ["Redlichkeit", "Neutraltorso", "Reitgespann"];
     case 639:
-      return ["Terrakium", "Leer", "Leer"];
+      return ["Redlichkeit", "Robustheit", "Reitgespann"];
     case 640:
-      return ["Viridium", "Leer", "Leer"];
+      return ["Redlichkeit", "Temposchub", "Reitgespann"];
     case 641:
-      return ["Boreos", "Leer", "Leer"];
+      return ["Strolch", "Siegeswille", "Niesel"];
     case 642:
-      return ["Voltolos", "Leer", "Leer"];
+      return ["Strolch", "Siegeswille", "Niesel"];
     case 643:
-      return ["Reshiram", "Leer", "Leer"];
+      return ["Turbobrand", "Erzwinger", "Bedroher"];
     case 644:
-      return ["Zekrom", "Leer", "Leer"];
+      return ["Teravolt", "Erzwinger", "Bedroher"];
     case 645:
-      return ["Demeteros", "Leer", "Leer"];
+      return ["Strolch", "Siegeswille", "Dürre"];
     case 646:
-      return ["Kyurem", "Leer", "Leer"];
+      return ["Erzwinger", "Eishaut", "Frostschicht"];
     case 647:
-      return ["Keldeo", "Leer", "Leer"];
+      return ["Redlichkeit", "Hydration", "Reitgespann"];
     case 648:
-      return ["Meloetta", "Leer", "Leer"];
+      return ["Edelmut", "Tänzer", "Plätscherstimme"];
     case 649:
-      return ["Genesect", "Leer", "Leer"];
+      return ["Download", "Analyse", "Neutraltorso"];
     case 650:
-      return ["Igamaro", "Leer", "Leer"];
+      return ["Notdünger", "Kugelsicher", "Strolch"];
     case 651:
-      return ["Igastarnish", "Leer", "Leer"];
+      return ["Notdünger", "Kugelsicher", "Speckschicht"];
     case 652:
-      return ["Brigaron", "Leer", "Leer"];
+      return ["Notdünger", "Kugelsicher", "Edelmut"];
     case 653:
-      return ["Fynx", "Leer", "Leer"];
+      return ["Großbrand", "Zauberer", "Fellkleid"];
     case 654:
-      return ["Rutena", "Leer", "Leer"];
+      return ["Großbrand", "Zauberer", "Telepathie"];
     case 655:
-      return ["Fennexis", "Leer", "Leer"];
+      return ["Großbrand", "Zauberer", "Telepathie"];
     case 656:
-      return ["Froxy", "Leer", "Leer"];
+      return ["Sturzbach", "Wandlungskunst", "Wassertempo"];
     case 657:
-      return ["Amphizel", "Leer", "Leer"];
+      return ["Sturzbach", "Wandlungskunst", "Wassertempo"];
     case 658:
-      return ["Quajutsu", "Leer", "Leer"];
+      return ["Sturzbach", "Wandlungskunst", "Wassertempo"];
     case 659:
-      return ["Scoppel", "Leer", "Leer"];
+      return ["Sandscharrer", "Backentaschen", "Kraftkoloss"];
     case 660:
-      return ["Grebbit", "Leer", "Leer"];
+      return ["Rohe Gewalt", "Backentaschen", "Kraftkoloss"];
     case 661:
-      return ["Dartiri", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Orkanschwingen"];
     case 662:
-      return ["Dartignis", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Orkanschwingen"];
     case 663:
-      return ["Fiaro", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Orkanschwingen"];
     case 664:
-      return ["Purmel", "Leer", "Leer"];
+      return ["Puderabwehr", "Facettenaugen", "Freundeshut"];
     case 665:
-      return ["Puponcho", "Leer", "Leer"];
+      return ["Puderabwehr", "Expidermis", "Freundeshut"];
     case 666:
-      return ["Vivillon", "Leer", "Leer"];
+      return ["Puderabwehr", "Facettenaugen", "Freundeshut"];
     case 667:
-      return ["Leufeo", "Leer", "Leer"];
+      return ["Rivalität", "Anspannung", "Hochmut"];
     case 668:
-      return ["Pyroleo", "Leer", "Leer"];
+      return ["Rivalität", "Bedroher", "Hochmut"];
     case 669:
-      return ["Flabébé", "Leer", "Leer"];
+      return ["Blütelhülle", "Symbiose", "Schwebe"];
     case 670:
-      return ["Floette", "Leer", "Leer"];
+      return ["Blütelhülle", "Symbiose", "Schwebe"];
     case 671:
-      return ["Florges", "Leer", "Leer"];
+      return ["Blütelhülle", "Symbiose", "Schwebe"];
     case 672:
-      return ["Mähikel", "Leer", "Leer"];
+      return ["Vegetarier", "Pflanzenpelz", "Chlorophyll"];
     case 673:
-      return ["Chevrumm", "Leer", "Leer"];
+      return ["Vegetarier", "Pflanzenpelz", "Reitgespann"];
     case 674:
-      return ["Pam-Pam", "Leer", "Leer"];
+      return ["Eisenfaust", "Überbrückung", "Rauflust"];
     case 675:
-      return ["Pandagro", "Leer", "Leer"];
+      return ["Eisenfaust", "Überbrückung", "Rauflust"];
     case 676:
-      return ["Coiffwaff", "Leer", "Leer"];
+      return ["Fellkleid", "Wachhund", "Flexibilität"];
     case 677:
-      return ["Psiau", "Leer", "Leer"];
+      return ["Adlerauge", "Vorahnung", "Vorwarnung"];
     case 678:
-      return ["Psiaugon", "Leer", "Leer"];
+      return ["Strolch", "Vorahnung", "Vorwarnung"];
     case 679:
-      return ["Gramokles", "Leer", "Leer"];
+      return ["Schildlos", "Unheilskörper", "Tastfluch"];
     case 680:
-      return ["Duokles", "Leer", "Leer"];
+      return ["Schildlos", "Unheilskörper", "Tastfluch"];
     case 681:
-      return ["Durengard", "Leer", "Leer"];
+      return ["Kugelsicher", "Unheilskörper", "Taktikwechsel"];
     case 682:
-      return ["Parfi", "Leer", "Leer"];
+      return ["Duftnote", "Dufthülle", "Schnüffler"];
     case 683:
-      return ["Parfinesse", "Leer", "Leer"];
+      return ["Duftnote", "Dufthülle", "Schnüffler"];
     case 684:
-      return ["Flauschling", "Leer", "Leer"];
+      return ["Zuckerhülle", "Entlastung", "Schwebe"];
     case 685:
-      return ["Sabbaione", "Leer", "Leer"];
+      return ["Zuckerhülle", "Entlastung", "Völlerei"];
     case 686:
-      return ["Iscalar", "Leer", "Leer"];
+      return ["Umkehrung", "Saugnapf", "Schwebe"];
     case 687:
-      return ["Calamanero", "Leer", "Leer"];
+      return ["Umkehrung", "Saugnapf", "Schwebe"];
     case 688:
-      return ["Bithora", "Leer", "Leer"];
+      return ["Krallenwucht", "Superschütze", "Langfinger"];
     case 689:
-      return ["Thanathora", "Leer", "Leer"];
+      return ["Krallenwucht", "Superschütze", "Langfinger"];
     case 690:
-      return ["Algitt", "Leer", "Leer"];
+      return ["Giftdorn", "Giftgriff", "Schwebe"];
     case 691:
-      return ["Tandrak", "Leer", "Leer"];
+      return ["Giftdorn", "Giftgriff", "Schwebe"];
     case 692:
-      return ["Scampisto", "Leer", "Leer"];
+      return ["Megawumme", "Wassertempo", "Schwerenmacht"];
     case 693:
-      return ["Wummer", "Leer", "Leer"];
+      return ["Megawumme", "Wassertempo", "Schwerenmacht"];
     case 694:
-      return ["Eguana", "Leer", "Leer"];
+      return ["Trockenheit", "Sandschleier", "Solarkraft"];
     case 695:
-      return ["Elezard", "Leer", "Leer"];
+      return ["Trockenheit", "Sandschleier", "Solarkraft"];
     case 696:
-      return ["Balgoras", "Leer", "Leer"];
+      return ["Titankiefer", "Robustheit", "Anspannung"];
     case 697:
-      return ["Monargoras", "Leer", "Leer"];
+      return ["Titankiefer", "Robustheit", "Bedroher"];
     case 698:
-      return ["Amarino", "Leer", "Leer"];
+      return ["Eishaut", "Edelmut", "Hochmut"];
     case 699:
-      return ["Amagarga", "Leer", "Leer"];
+      return ["Eishaut", "Edelmut", "Hochmut"];
     case 700:
-      return ["Feelinara", "Leer", "Leer"];
+      return ["Charmebolzen", "Feenschicht", "Edelmut"];
     case 701:
-      return ["Resladero", "Leer", "Leer"];
+      return ["Flexibilität", "Entlastung", "Überbrückung"];
     case 702:
-      return ["Dedenne", "Leer", "Leer"];
+      return ["Backentaschen", "Mitnahme", "Statik"];
     case 703:
-      return ["Rocara", "Leer", "Leer"];
+      return ["Schwebe", "Neutraltorso", "Robustheit"];
     case 704:
-      return ["Viscora", "Leer", "Leer"];
+      return ["Klebekörper", "Viskosität", "Hydration"];
     case 705:
-      return ["Viscargot", "Leer", "Leer"];
+      return ["Klebekörper", "Viskosität", "Hydration"];
     case 706:
-      return ["Viscogon", "Leer", "Leer"];
+      return ["Klebekörper", "Viskosität", "Hydration"];
     case 707:
-      return ["Clavion", "Leer", "Leer"];
+      return ["Strolch", "Zauberer", "Schwebe"];
     case 708:
-      return ["Paragoni", "Leer", "Leer"];
+      return ["Schwebe", "Schnüffler", "Reiche Ernte"];
     case 709:
-      return ["Trombork", "Leer", "Leer"];
+      return ["Alptraum", "Tastfluch", "Bedroher"];
     case 710:
-      return ["Irrbis", "Leer", "Leer"];
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
     case 711:
-      return ["Pumpdjinn", "Leer", "Leer"];
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
     case 712:
-      return ["Arktip", "Leer", "Leer"];
+      return ["Eishaut", "Frostschicht", "Robustheit"];
     case 713:
-      return ["Arktilas", "Leer", "Leer"];
+      return ["Eishaut", "Frostschicht", "Robustheit"];
     case 714:
-      return ["eF-eM", "Leer", "Leer"];
+      return ["Schnüffler", "Schwebedurch", "Telepathie"];
     case 715:
-      return ["UHaFnir", "Leer", "Leer"];
+      return ["Schnüffler", "Schwebedurch", "Telepathie"];
     case 716:
-      return ["Xerneas", "Leer", "Leer"];
+      return ["Feenaura", "Erzwinger", "Heilherz"];
     case 717:
-      return ["Yveltal", "Leer", "Leer"];
+      return ["Dunkelaura", "Erzwinger", "Bedroher"];
     case 718:
-      return ["Zygarde", "Leer", "Leer"];
+      return ["Aura-Umkehr", "Scharwandel", "Erzwinger"];
     case 719:
-      return ["Diancie", "Leer", "Leer"];
+      return ["Neutraltorso", "Schwebe", "Edelmut"];
     case 720:
-      return ["Hoopa", "Leer", "Leer"];
+      return ["Zauberer", "Schwebe", "Strolch"];
     case 721:
-      return ["Volcanion", "Leer", "Leer"];
+      return ["H2O-Absorber", "Pulverrauch", "Magmapanzer"];
     case 722:
-      return ["Bauz", "Leer", "Leer"];
+      return ["Notdünger", "Langstrecke", "Taumelschritt"];
     case 723:
-      return ["Arboretoss", "Leer", "Leer"];
+      return ["Notdünger", "Langstrecke", "Taumelschritt"];
     case 724:
-      return ["Silvarro", "Leer", "Leer"];
+      return ["Notdünger", "Langstrecke", "Adlerauge"];
     case 725:
-      return ["Flamiau", "Leer", "Leer"];
+      return ["Großbrand", "Bedroher", "Flexibilität"];
     case 726:
-      return ["Miezunder", "Leer", "Leer"];
+      return ["Großbrand", "Bedroher", "Krallenwucht"];
     case 727:
-      return ["Fuegro", "Leer", "Leer"];
+      return ["Großbrand", "Bedroher", "Krallenwucht"];
     case 728:
-      return ["Robball", "Leer", "Leer"];
+      return ["Sturzbach", "Schnüffler", "Plätscherstimme"];
     case 729:
-      return ["Marikeck", "Leer", "Leer"];
+      return ["Sturzbach", "WWassertempo", "Plätscherstimme"];
     case 730:
-      return ["Primarene", "Leer", "Leer"];
+      return ["Sturzbach", "WWassertempo", "Plätscherstimme"];
     case 731:
-      return ["Peppeck", "Leer", "Leer"];
+      return ["Adlerauge", "Wertelink", "Taumelschritt"];
     case 732:
-      return ["Trompeck", "Leer", "Leer"];
+      return ["Adlerauge", "Wertelink", "Taumelschritt"];
     case 733:
-      return ["Tukanon", "Leer", "Leer"];
+      return ["Adlerauge", "Wertelink", "Rohe Gewalt"];
     case 734:
-      return ["Mangunior", "Leer", "Leer"];
+      return ["Beschattung", "Titankiefer", "Anpassung"];
     case 735:
-      return ["Manguspektor", "Leer", "Leer"];
+      return ["Beschattung", "Titankiefer", "Anpassung"];
     case 736:
-      return ["Mabula", "Leer", "Leer"];
+      return ["Hexaplaga", "Facettenauge", "Titankiefer"];
     case 737:
-      return ["Akkup", "Leer", "Leer"];
+      return ["Hexaplaga", "Batterie", "Statik"];
     case 738:
-      return ["Donarion", "Leer", "Leer"];
+      return ["Hexaplaga", "Schwebe", "Batterie"];
     case 739:
-      return ["Krabbox", "Leer", "Leer"];
+      return ["Scherenmacht", "Eisenfaust", "Kurzschluss"];
     case 740:
-      return ["Krawell", "Leer", "Leer"];
+      return ["Scherenmacht", "Eisenfaust", "Kurzschluss"];
     case 741:
-      return ["Choreogel", "Leer", "Leer"];
+      return ["Tänzer", "Adlerauge", "Taumelschritt"];
     case 742:
-      return ["Wommel", "Leer", "Leer"];
+      return ["Schwebe", "Puderabwehr", "Honigmaul"];
     case 743:
-      return ["Bandelby", "Leer", "Leer"];
+      return ["Schwebe", "Puderabwehr", "Honigmaul"];
     case 744:
-      return ["Wuffels", "Leer", "Leer"];
+      return ["Felsenfest", "Munterkeit", "Wachhund"];
     case 745:
-      return ["Wolwerock", "Leer", "Leer"];
+      return ["Felsenfest", "Munterkeit", "Wachhund"];
     case 746:
-      return ["Lusardin", "Leer", "Leer"];
+      return ["Fischschwarm", "Wassertempo", "Angsthase"];
     case 747:
-      return ["Garstella", "Leer", "Leer"];
+      return ["Quälerei", "Giftdorn", "Belebekraft"];
     case 748:
-      return ["Aggrostella", "Leer", "Leer"];
+      return ["Quälerei", "Giftdorn", "Belebekraft"];
     case 749:
-      return ["Pampuli", "Leer", "Leer"];
+      return ["GLeichmut", "Zähigkeit", "Vegetarier"];
     case 750:
-      return ["Pampross", "Leer", "Leer"];
+      return ["Konzentrator", "Zähigkeit", "Vegetarier"];
     case 751:
-      return ["Araqua", "Leer", "Leer"];
+      return ["Wasserblase", "H2O-Absorber", "Heilherz"];
     case 752:
-      return ["Aranestro", "Leer", "Leer"];
+      return ["Wasserblase", "H2O-Absorber", "Heilherz"];
     case 753:
-      return ["Imantis", "Leer", "Leer"];
+      return ["Floraschild", "Umkehrung", "Chlorophyll"];
     case 754:
-      return ["Mantidea", "Leer", "Leer"];
+      return ["Floraschild", "Umkehrung", "Chlorophyll"];
     case 755:
-      return ["Bubungus", "Leer", "Leer"];
+      return ["Erleuchtung", "Sporenwirt", "Regengenuss"];
     case 756:
-      return ["Lamellux", "Leer", "Leer"];
+      return ["Erleuchtung", "Sporenwirt", "Regengenuss"];
     case 757:
-      return ["Molunk", "Leer", "Leer"];
+      return ["Korrosion", "Dösigkeit", "Rivalität"];
     case 758:
-      return ["Amfira", "Leer", "Leer"];
+      return ["Korrosion", "Dösigkeit", "Rivalität"];
     case 759:
-      return ["Velursi", "Leer", "Leer"];
+      return ["Flauschigkeit", "Tollpatsch", "Charmebolzen"];
     case 760:
-      return ["Kosturso", "Leer", "Leer"];
+      return ["Flauschigkeit", "Tollpatsch", "Anspannung"];
     case 761:
-      return ["Frubberl", "Leer", "Leer"];
+      return ["Floraschild", "Reiche Ernte", "Zuckerhülle"];
     case 762:
-      return ["Frubaila", "Leer", "Leer"];
+      return ["Floraschild", "Reiche Ernte", "Zuckerhülle"];
     case 763:
-      return ["Fruyal", "Leer", "Leer"];
+      return ["Floraschild", "Majestät", "Zuckerhülle"];
     case 764:
-      return ["Curelei", "Leer", "Leer"];
+      return ["Blütenhülle", "Heilwandel", "Innere Kraft"];
     case 765:
-      return ["Kommandutan", "Leer", "Leer"];
+      return ["Konzentrator", "Telepathie", "Symbiose"];
     case 766:
-      return ["Quartermak", "Leer", "Leer"];
+      return ["Receiver", "Siegeswille", "Rasanz"];
     case 767:
-      return ["Reißlaus", "Leer", "Leer"];
+      return ["Reißaus", "Angsthase", "Hasenfuß"];
     case 768:
-      return ["Tectass", "Leer", "Leer"];
+      return ["Rückzug", "Bedroher", "Rohe Gewalt"];
     case 769:
-      return ["Sankabuh", "Leer", "Leer"];
+      return ["Verklumpen", "Sandschleier", "Sandgewalt"];
     case 770:
-      return ["Colossand", "Leer", "Leer"];
+      return ["Verklumpen", "Sandschleier", "Sandgewalt"];
     case 771:
-      return ["Gufa", "Leer", "Leer"];
+      return ["Magenkrempler", "Unkenntnis", "Giftdorn"];
     case 772:
-      return ["Typ:Null", "Leer", "Leer"];
+      return ["Kampfpanzer", "Anpassung", "Anspannung"];
     case 773:
-      return ["Amigento", "Leer", "Leer"];
+      return ["Kampfpanzer", "Alpha-System", "Anpassung"];
     case 774:
-      return ["Meteno", "Leer", "Leer"];
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
     case 775:
-      return ["Koalelu", "Leer", "Leer"];
+      return ["Dauerschlaf", "Konzentrator", "Vegetarier"];
     case 776:
-      return ["Tortunator", "Leer", "Leer"];
+      return ["Panzerhaut", "Magmapanzer", "Superschütze"];
     case 777:
-      return ["Togedemaru", "Leer", "Leer"];
+      return ["Eisenstachel", "Blitzfänger", "Robustheit"];
     case 778:
-      return ["Mimigma", "Leer", "Leer"];
+      return ["Kostümspuk", "Bedroher", "Tastfluch"];
     case 779:
-      return ["Knirfish", "Leer", "Leer"];
+      return ["Buntkörper", "Titankiefer", "Wunderhaut"];
     case 780:
-      return ["Sen-Long", "Leer", "Leer"];
+      return ["Wutausbruch", "Schwebe", "Wolke Sieben"];
     case 781:
-      return ["Moruda", "Leer", "Leer"];
+      return ["Stahlprofi", "Tastfluch", "Immunität"];
     case 782:
-      return ["Miniras", "Leer", "Leer"];
+      return ["Kugelsicher", "Lärmschutz", "Partikelschutz"];
     case 783:
-      return ["Mediras", "Leer", "Leer"];
+      return ["Kugelsicher", "Lärmschutz", "Partikelschutz"];
     case 784:
-      return ["Grandiras", "Leer", "Leer"];
+      return ["Kugelsicher", "Lärmschutz", "Partikelschutz"];
     case 785:
-      return ["Kapu-Riki", "Leer", "Leer"];
+      return ["Elektro-Erzeuger", "Schwebe", "Telepathie"];
     case 786:
-      return ["Kapu-Fala", "Leer", "Leer"];
+      return ["Psycho-Erzeuger", "Schwebe", "Telepathie"];
     case 787:
-      return ["Kapu-Toro", "Leer", "Leer"];
+      return ["Gras-Erzeuger", "Schwebe", "Telepathie"];
     case 788:
-      return ["Kapu-Kime", "Leer", "Leer"];
+      return ["Nebel-Erzeuger", "Schwebe", "Telepathie"];
     case 789:
-      return ["Cosmog", "Leer", "Leer"];
+      return ["Schwebe", "Unkenntnis", "Strolch"];
     case 790:
-      return ["Cosmovum", "Leer", "Leer"];
+      return ["Schwebe", "Unkenntnis", "Robustheit"];
     case 791:
-      return ["Solgaleo", "Leer", "Leer"];
+      return ["Metallprotektor", "Bedroher", "Erzwinger"];
     case 792:
-      return ["Lunala", "Leer", "Leer"];
+      return ["Phantomschutz", "Schwebe", "Erzwinger"];
     case 793:
-      return ["Anego", "Leer", "Leer"];
+      return ["Bestien-Boost", "Schwebe", "Giftbelag"];
     case 794:
-      return ["Masskito", "Leer", "Leer"];
+      return ["Bestien-Boost", "Rohe Gewalt", "Adrenalin"];
     case 795:
-      return ["Schabelle", "Leer", "Leer"];
+      return ["Bestien-Boost", "Charmebolzen", "Rivalität"];
     case 796:
-      return ["Voltriant", "Leer", "Leer"];
+      return ["Bestien-Boost", "Flexibilität", "Immunität"];
     case 797:
-      return ["Kopplosio", "Leer", "Leer"];
+      return ["Bestien-Boost", "Leichtmetall", "Schwermetall"];
     case 798:
-      return ["Katagami", "Leer", "Leer"];
+      return ["Bestien-Boost", "Schwebe", "Scharfkantig"];
     case 799:
-      return ["Schlingking", "Leer", "Leer"];
+      return ["Bestien-Boost", "Völlerei", "Erzwinger"];
     case 800:
-      return ["Necrozma", "Leer", "Leer"];
+      return ["Prismarüstung", "Erzwinger", "Telepathie"];
     case 801:
-      return ["Magearna", "Leer", "Leer"];
+      return ["Seelenherz", "Robustheit", "Feenschicht"];
     case 802:
-      return ["Marshadow", "Leer", "Leer"];
+      return ["Techniker", "Phantomschutz", "Eisenfaust"];
     case 803:
-      return ["Venicro", "Leer", "Leer"];
+      return ["Bestien-Boost", "Schwebe", "Heilwandel"];
     case 804:
-      return ["Agoyon", "Leer", "Leer"];
+      return ["Bestien-Boost", "Schwebe", "Heilwandel"];
     case 805:
-      return ["Muramura", "Leer", "Leer"];
+      return ["Bestien-Boost", "Robustheit", "Analyse"];
     case 806:
-      return ["Kopplosio", "Leer", "Leer"];
+      return ["Bestien-Boost", "Finalschlag", "Tänzer"];
     case 807:
-      return ["Zeraora", "Leer", "Leer"];
+      return ["Voltabsorber", "Rasanz", "Eisenfaust"];
     case 808:
-      return ["Meltan", "Leer", "Leer"];
+      return ["Magnetfalle", "Viskosität", "Giftgriff"];
     case 809:
-      return ["Melmetal", "Leer", "Leer"];
+      return ["Magnetfalle", "Eisenfaust", "Robustheit"];
     case 810:
-      return ["Chimpep", "Leer", "Leer"];
+      return ["Notdünger", "Gras-Erzeuger", "Strolch"];
     case 811:
-      return ["Chimstix", "Leer", "Leer"];
+      return ["Notdünger", "Gras-Erzeuger", "Konzentrator"];
     case 812:
-      return ["Gortrom", "Leer", "Leer"];
+      return ["Notdünger", "Gras-Erzeuger", "Eisenfaust"];
     case 813:
-      return ["Hopplo", "Leer", "Leer"];
+      return ["Großbrand", "Libero", "Übereifer"];
     case 814:
-      return ["Kickerlo", "Leer", "Leer"];
+      return ["Großbrand", "Libero", "Temposchub"];
     case 815:
-      return ["Liberlo", "Leer", "Leer"];
+      return ["Großbrand", "Libero", "Temposchub"];
     case 816:
-      return ["Memmeon", "Leer", "Leer"];
+      return ["Sturzbach", "Superschütze", "Angsthase"];
     case 817:
-      return ["Phlegleon", "Leer", "Leer"];
+      return ["Sturzbach", "Superschütze", "Hydration"];
     case 818:
-      return ["Intelleon", "Leer", "Leer"];
+      return ["Sturzbach", "Superschütze", "Hydration"];
     case 819:
-      return ["Raffel", "Leer", "Leer"];
+      return ["Backentaschen", "Völlerei", "Speckschicht"];
     case 820:
-      return ["Schlaraffel", "Leer", "Leer"];
+      return ["Backentaschen", "Völlerei", "Speckschicht"];
     case 821:
-      return ["Meikro", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Anspannung"];
     case 822:
-      return ["Kranoviz", "Leer", "Leer"];
+      return ["Adlerauge", "Brustbieter", "Anspannung"];
     case 823:
-      return ["Krarmor", "Leer", "Leer"];
+      return ["Adlerauge", "Anspannung", "Spiegelrüstung"];
     case 824:
-      return ["Sensect", "Leer", "Leer"];
+      return ["Hexaplaga", "Facettenauge", "Telepathie"];
     case 825:
-      return ["Keradar", "Leer", "Leer"];
+      return ["Hexaplaga", "Facettenauge", "Telepathie"];
     case 826:
-      return ["Maritellit", "Leer", "Leer"];
+      return ["Hexaplaga", "Schnüffler", "Telepathie"];
     case 827:
-      return ["Kleppfel", "Leer", "Leer"];
+      return ["Angsthase", "Mitnahme", "Beschattung"];
     case 828:
-      return ["Zwirrlicht", "Leer", "Leer"];
+      return ["Angsthase", "Mitnahme", "Beschattung"];
     case 829:
-      return ["Brimova", "Leer", "Leer"];
+      return ["Wollflaum", "Schwebe", "Sporenwirt"];
     case 830:
-      return ["Brimano", "Leer", "Leer"];
+      return ["Wollflaum", "Schwebe", "Sporenwirt"];
     case 831:
-      return ["Wolly", "Leer", "Leer"];
+      return ["Flauschigkeit", "Angsthase", "Kugelsicher"];
     case 832:
-      return ["Zwollock", "Leer", "Leer"];
+      return ["Flauschigkeit", "Felsenfest", "Kugelsicher"];
     case 833:
-      return ["Kamehaps", "Leer", "Leer"];
+      return ["Titankiefer", "Panzerhaut", "Wassertempo"];
     case 834:
-      return ["Kamalm", "Leer", "Leer"];
+      return ["Titankiefer", "Panzerhaut", "Wassertempo"];
     case 835:
-      return ["Voldi", "Leer", "Leer"];
+      return ["Apport", "Wachhund", "Statik"];
     case 836:
-      return ["Bellektro", "Leer", "Leer"];
+      return ["Titankiefer", "Wachhund", "Statik"];
     case 837:
-      return ["Klonkett", "Leer", "Leer"];
+      return ["Dampantrieb", "Hitzeschutz", "Feuerfänger"];
     case 838:
-      return ["Wagong", "Leer", "Leer"];
+      return ["Dampantrieb", "Feuerfänger", "Feuerfänger"];
     case 839:
-      return ["Montecarbo", "Leer", "Leer"];
+      return ["Dampantrieb", "Feuerfänger", "Feuerfänger"];
     case 840:
-      return ["Knapfel", "Leer", "Leer"];
+      return ["Heranreifen", "Völlerei", "Kugelsicher"];
     case 841:
-      return ["Drapfel", "Leer", "Leer"];
+      return ["Heranreifen", "Völlerei", "Übereifer"];
     case 842:
-      return ["Schlapfel", "Leer", "Leer"];
+      return ["Heranreifen", "Völlerei", "Speckschicht"];
     case 843:
-      return ["Sanaconda", "Leer", "Leer"];
+      return ["Sandspeier", "Expidermis", "Sandschleier"];
     case 844:
-      return ["Urgl", "Leer", "Leer"];
+      return ["Sandspeier", "Expidermis", "Sandschleier"];
     case 845:
-      return ["Pikuda", "Leer", "Leer"];
+      return ["Würggeschoss", "Adlerauge", "Brustbieter"];
     case 846:
-      return ["Barrakiefa", "Leer", "Leer"];
+      return ["Wassertempo", "Schraubflosse", "Titankiefer"];
     case 847:
-      return ["Toxel", "Leer", "Leer"];
+      return ["Wassertempo", "Schraubflosse", "Titankiefer"];
     case 848:
-      return ["Riffex", "Leer", "Leer"];
+      return ["Hasenfuß", "Statik", "Tollpatsch"];
     case 849:
-      return ["Thermopod", "Leer", "Leer"];
+      return ["Punk Rock", "Techniker", "Statik"];
     case 850:
-      return ["Infernopod", "Leer", "Leer"];
+      return ["Feuerfänger", "Pulverrauch", "Flammkörper"];
     case 851:
-      return ["Skullpod", "Leer", "Leer"];
+      return ["Feuerfänger", "Pulverrauch", "Flammkörper"];
     case 852:
-      return ["Snieboss", "Leer", "Leer"];
+      return ["Flexibilität", "Techniker", "Eisenfaust"];
     case 853:
-      return ["Mottineva", "Leer", "Leer"];
+      return ["Flexibilität", "Techniker", "Eisenfaust"];
     case 854:
-      return ["Mortipot", "Leer", "Leer"];
+      return ["Bruchrüstung", "Tastfluch", "Gastlichkeit"];
     case 855:
-      return ["Brimmel", "Leer", "Leer"];
+      return ["Bruchrüstung", "Tastfluch", "Gastlichkeit"];
     case 856:
-      return ["Boffel", "Leer", "Leer"];
+      return ["Heilherz", "Vorahnung", "Magiespiegel"];
     case 857:
-      return ["Childerik", "Leer", "Leer"];
+      return ["Heilherz", "Vorahnung", "Magiespiegel"];
     case 858:
-      return ["Grandifflora", "Leer", "Leer"];
+      return ["Heilherz", "Vorahnung", "Magiespiegel"];
     case 859:
-      return ["Gryphid", "Leer", "Leer"];
+      return ["Strolch", "Schnüffler", "Langfinger"];
     case 860:
-      return ["Furnifraß", "Leer", "Leer"];
+      return ["Strolch", "Schnüffler", "Langfinger"];
     case 861:
-      return ["Crimanzo", "Leer", "Leer"];
+      return ["Strolch", "Schnüffler", "Langfinger"];
     case 862:
-      return ["Olangaar", "Leer", "Leer"];
+      return ["Adrenalin", "Siegeswille", "Ausweglos"];
     case 863:
-      return ["Barrikadax", "Leer", "Leer"];
+      return ["Kampfpanzer", "Krallenwucht", "Stählerner Wille"];
     case 864:
-      return ["Mauzinger", "Leer", "Leer"];
+      return ["Bruchrüstung", "Unheilskörper", "Tastfluch"];
     case 865:
-      return ["Gorgasonn", "Leer", "Leer"];
+      return ["Felsenfest", "Rauflust", "Redlichkeit"];
     case 866:
-      return ["Lauchzelot", "Leer", "Leer"];
+      return ["Taumelschritt", "Hemmungslos", "Eishaut"];
     case 867:
-      return ["Pantifrost", "Leer", "Leer"];
+      return ["Rastlose Seele", "Tastfluch", "Anspannung"];
     case 868:
-      return ["Perlperior", "Leer", "Leer"];
+      return ["Zuckerhülle", "Dufthülle", "Heilherz"];
     case 869:
-      return ["Cupidos", "Leer", "Leer"];
+      return ["Zuckerhülle", "Dufthülle", "Heilherz"];
     case 870:
-      return ["Karadonis", "Leer", "Leer"];
+      return ["Kampfpanzer", "Siegeswille", "Freundeshut"];
     case 871:
-      return ["Voltriant", "Leer", "Leer"];
+      return ["Blitzfänger", "Elektro-Erzeuger", "Eisenstachel"];
     case 872:
-      return ["Humanolith", "Leer", "Leer"];
+      return ["Puderabwehr", "Eisflügelstaub", "Hexaplaga"];
     case 873:
-      return ["Parasek", "Leer", "Leer"];
+      return ["Puderabwehr", "Eisflügelstaub", "Hexaplaga"];
     case 874:
-      return ["Battaleon", "Leer", "Leer"];
+      return ["Kraftquelle", "Felskern", "Vorahnung"];
     case 875:
-      return ["Lectragon", "Leer", "Leer"];
+      return ["Tiefkühlkopf", "Eishaut", "Frostschicht"];
     case 876:
-      return ["Lecryodon", "Leer", "Leer"];
+      return ["Synchro", "Psycho-Erzeuger", "Konzentrator"];
     case 877:
-      return ["Pescragon", "Leer", "Leer"];
+      return ["Heißhunger", "Backentaschen", "Statik"];
     case 878:
-      return ["Lumigant", "Leer", "Leer"];
+      return ["Rohe Gewalt", "Schwermetall", "Robustheit"];
     case 879:
-      return ["Tentoxa", "Leer", "Leer"];
+      return ["Rohe Gewalt", "Schwermetall", "Robustheit"];
     case 880:
-      return ["Kronjuwild", "Leer", "Leer"];
+      return ["Voltabsorber", "Übereifer", "Elektro-Erzeuger"];
     case 881:
-      return ["Nigiragi", "Leer", "Leer"];
+      return ["Voltabsorber", "Statik", "Schneescharrer"];
     case 882:
-      return ["Scampisto", "Leer", "Leer"];
+      return ["H2O-Absorber", "Titankiefer", "Sandscharrer"];
     case 883:
-      return ["Zacian", "Leer", "Leer"];
+      return ["H2O-Absorber", "Eishaut", "Schneescharrer"];
     case 884:
-      return ["Zamazenta", "Leer", "Leer"];
+      return ["Leichtmetall", "Stahlrückgrat", "Robustheit"];
     case 885:
-      return ["Endynalos", "Leer", "Leer"];
+      return ["Schwebe", "Schwebedurch", "Neutraltorso"];
     case 886:
-      return ["Duraludon", "Leer", "Leer"];
+      return ["Schwebe", "Schwebedurch", "Neutraltorso"];
     case 887:
-      return ["Golurak", "Leer", "Leer"];
+      return ["Schwebe", "Schwebedurch", "Neutraltorso"];
     case 888:
-      return ["Cottomi", "Leer", "Leer"];
+      return ["Kühnes Schwert", "Erzwinger", "Redlichkeit"];
     case 889:
-      return ["Cosmovum", "Leer", "Leer"];
+      return ["Wackerer Schild", "Erzwinger", "Redlichkeit"];
     case 890:
-      return ["Kubuin", "Leer", "Leer"];
+      return ["Erzwinger", "Schwebe", "Bedroher"];
     case 891:
-      return ["Drampa", "Leer", "Leer"];
+      return ["Konzentrator", "Schildlos", "Techniker"];
     case 892:
-      return ["Zarude", "Leer", "Leer"];
+      return ["Verborgene Faust", "Techniker", "Eisenfaust"];
     case 893:
-      return ["Regieleki", "Leer", "Leer"];
+      return ["Floraschild", "Krallenwucht", "Rohe Gewalt"];
     case 894:
-      return ["Regidrago", "Leer", "Leer"];
+      return ["Transistor", "Schwebe", "Voltabsorber"];
     case 895:
-      return ["Polaross", "Leer", "Leer"];
+      return ["Drachenkiefer", "Titankiefer", "Neutraltorso"];
     case 896:
-      return ["Phantyrenn", "Leer", "Leer"];
+      return ["Helles Wiehern", "Reitgespann", "Eishaut"];
     case 897:
-      return ["Coronospa", "Leer", "Leer"];
+      return ["Dunkles Wiehern", "Reitgespann", "Tastfluch"];
     case 898:
-      return ["Calyrex", "Leer", "Leer"];
+      return ["Anspannung", "Reitgespann", "Majestät"];
     case 899:
-      return ["Skorgro", "Leer", "Leer"];
+      return ["Bedroher", "Schnüffler", "Vorahnung"];
     case 900:
-      return ["Memmeon", "Leer", "Leer"];
-      case 900:
-      return ["Memmeon", "Leer", "Leer"];
+      return ["Hexaplaga", "Rohe Gewalt", "Scharfkantig"];
     case 901:
-      return ["Quartermak", "Leer", "Leer"];
+      return ["Adrenalin", "Bedroher", "Kugelsicher"];
     case 902:
-      return ["Azugladis", "Leer", "Leer"];
+      return ["Wassertempo", "Anspannung", "Überbrückung"];
     case 903:
-      return ["Mastifioso", "Leer", "Leer"];
+      return ["Erzwinger", "Giftgriff", "Krallenwucht"];
     case 904:
-      return ["Varoom", "Leer", "Leer"];
+      return ["Giftdorn", "Wassertempo", "Bedroher"];
     case 905:
-      return ["Revroom", "Leer", "Leer"];
+      return ["Heilherz", "Charmebolzen", "Umkehrung"];
     case 906:
-      return ["Feliosmin", "Leer", "Leer"];
+      return ["Notdünger", "Strolch", "Chlorophyll"];
     case 907:
-      return ["Wampitz", "Leer", "Leer"];
+      return ["Notdünger", "Krallenwucht", "Chlorophyll"];
     case 908:
-      return ["Gargantos", "Leer", "Leer"];
+      return ["Notdünger", "Wandlungskunst", "Chlorophyll"];
     case 909:
-      return ["Ursaluna", "Leer", "Leer"];
+      return ["Großbrand", "Unkenntnis", "Titankiefer"];
     case 910:
-      return ["Perrserker", "Leer", "Leer"];
+      return ["Großbrand", "Unkenntnis", "Titankiefer"];
     case 911:
-      return ["Skaraborn", "Leer", "Leer"];
+      return ["Großbrand", "Unkenntnis", "Titankiefer"];
     case 912:
-      return ["Skorgla", "Leer", "Leer"];
+      return ["Sturzbach", "Hochmut", "Hydration"];
     case 913:
-      return ["Tauros", "Leer", "Leer"];
+      return ["Sturzbach", "Hochmut", "Tänzer"];
     case 914:
-      return ["Tauros", "Leer", "Leer"];
+      return ["Sturzbach", "Hochmut", "Tänzer"];
     case 915:
-      return ["Fiaro", "Leer", "Leer"];
+      return ["Dufthülle", "Völlerei", "Speckschicht"];
     case 916:
-      return ["Flamiau", "Leer", "Leer"];
+      return ["Duftschwade", "Völlerei", "Speckschicht"];
     case 917:
-      return ["Krokel", "Leer", "Leer"];
+      return ["Insomnia", "Beschattung", "Hexaplaga"];
     case 918:
-      return ["Terribark", "Leer", "Leer"];
+      return ["Insomnia", "Beschattung", "Hexaplaga"];
     case 919:
-      return ["Kleavor", "Leer", "Leer"];
+      return ["Hexaplaga", "Aufwertung", "Reißaus"];
     case 920:
-      return ["Axantor", "Leer", "Leer"];
+      return ["Hexaplaga", "Aufwertung", "Rasanz"];
     case 921:
-      return ["Dorgaruksen", "Leer", "Leer"];
+      return ["Statik", "Innere Kraft", "Aufwertung"];
     case 922:
-      return ["Pelzebub", "Leer", "Leer"];
+      return ["Voltabsorber", "Innere Kraft", "Eisenfaust"];
     case 923:
-      return ["Pelzebub", "Leer", "Leer"];
+      return ["Voltabsorber", "Innere Kraft", "Eisenfaust"];
     case 924:
-      return ["Lextremo", "Leer", "Leer"];
+      return ["Angsthase", "Backentaschen", "Freundeshut"];
     case 925:
-      return ["Maskagato", "Leer", "Leer"];
+      return ["Backentaschen", "Techniker", "Freundeshut"];
     case 926:
-      return ["Gladimperio", "Leer", "Leer"];
+      return ["Gleichmut", "Tollpatsch", "Wachhund"];
     case 927:
-      return ["Mortipot", "Leer", "Leer"];
+      return ["Knusperkruste", "Dufthülle", "Wachhund"];
     case 928:
-      return ["Mozzapotz", "Leer", "Leer"];
+      return ["Frühwecker", "Reiche Ernte", "Chlorophyll"];
     case 929:
-      return ["Granfusion", "Leer", "Leer"];
+      return ["Frühwecker", "Reiche Ernte", "Chlorophyll"];
     case 930:
-      return ["Granfusion", "Leer", "Leer"];
+      return ["Frühwecker", "Reiche Ernte", "Streusaat"];
     case 931:
-      return ["Heerashai", "Leer", "Leer"];
+      return ["Bedroher", "Übereifer", "Rohe Gewalt"];
     case 932:
-      return ["Relluk", "Leer", "Leer"];
+      return ["Läutersalz", "Robustheit", "Neutraltorso"];
     case 933:
-      return ["Bailonda", "Leer", "Leer"];
+      return ["Läutersalz", "Robustheit", "Neutraltorso"];
     case 934:
-      return ["Psyqueen", "Leer", "Leer"];
+      return ["Läutersalz", "Robustheit", "Neutraltorso"];
     case 935:
-      return ["Forgita", "Leer", "Leer"];
+      return ["Feuerfänger", "Flammkörper", "Unbeugsamkeit"];
     case 936:
-      return ["Tafforgita", "Leer", "Leer"];
+      return ["Feuerfänger", "Flammkörper", "Unbeugsamkeit"];
     case 937:
-      return ["Wampitz", "Leer", "Leer"];
+      return ["Feuerfänger", "Bruchrüstung", "Unbeugsamkeit"];
     case 938:
-      return ["Voltrel", "Leer", "Leer"];
+      return ["Dynamo", "Statik", "Feuchtigkeit"];
     case 939:
-      return ["Bellektro", "Leer", "Leer"];
+      return ["Dynamo", "Statik", "Feuchtigkeit"];
     case 940:
-      return ["Bellektro", "Leer", "Leer"];
+      return ["Windkraft", "Orkanschwingen", "Voltabsorber"];
     case 941:
-      return ["Hoopa", "Leer", "Leer"];
+      return ["Windkraft", "Orkanschwingen", "Voltabsorber"];
     case 942:
-      return ["Hoopa", "Leer", "Leer"];
+      return ["Bedroher", "Angsthase", "Titankiefer"];
     case 943:
-      return ["Tandemaus", "Leer", "Leer"];
+      return ["Bedroher", "Wachhund", "Titankiefer"];
     case 944:
-      return ["Maushold", "Leer", "Leer"];
+      return ["Entlastung", "Langfinger", "Strolch"];
     case 945:
-      return ["Krokel", "Leer", "Leer"];
+      return ["Entlastung", "Giftgriff", "Strolch"];
     case 946:
-      return ["Agiluza", "Leer", "Leer"];
+      return ["Windreiter", "Schwebedurch", "Schwebe"];
     case 947:
-      return ["Siberio", "Leer", "Leer"];
+      return ["Windreiter", "Schwebedurch", "Schwebe"];
     case 948:
-      return ["Cryosphat", "Leer", "Leer"];
+      return ["Myzelienkraft", "Rasanz", "Flexibilität"];
     case 949:
-      return ["Fidough", "Leer", "Leer"];
+      return ["Myzelienkraft", "Heilwandel", "Flexibilität"];
     case 950:
-      return ["Dachsbun", "Leer", "Leer"];
+      return ["Wutpanzer", "Panzerhaut", "Scherenmacht"];
     case 951:
-      return ["Tarundel", "Leer", "Leer"];
+      return ["Chlorophyll", "Tollpatsch", "Strolch"];
     case 952:
-      return ["Spinsidias", "Leer", "Leer"];
+      return ["Chlorophyll", "Insomnia", "Gefühlswippe"];
     case 953:
-      return ["Namenlos", "Leer", "Leer"];
+      return ["Facettenauge", "Expidermis", "Mitnahme"];
     case 954:
-      return ["Humbugant", "Leer", "Leer"];
+      return ["Synchro", "Telepathie", "Mitnahme"];
     case 955:
-      return ["Knattox", "Leer", "Leer"];
+      return ["Vorahnung", "Schnüüffler", "Schwebe"];
     case 956:
-      return ["Knarborator", "Leer", "Leer"];
+      return ["Profiteur", "Schnüffler", "Temposchub"];
     case 957:
-      return ["Knarborator", "Leer", "Leer"];
+      return ["Überbrückung", "Gleichmut", "Siegeswille"];
     case 958:
-      return ["Miraidon", "Leer", "Leer"];
+      return ["Überbrückung", "Rohe Gewalt", "Siegeswille"];
     case 959:
-      return ["Koraidon", "Leer", "Leer"];
+      return ["Überbrückung", "Kraftkoloss", "Siegeswille"];
     case 960:
-      return ["Mopex", "Leer", "Leer"];
+      return ["Viskosität", "Hasenfuß", "Sandschleier"];
     case 961:
-      return ["Friedwuffels", "Leer", "Leer"];
+      return ["Viskosität", "Hasenfuß", "Sandschleier"];
     case 962:
-      return ["Zyrella", "Leer", "Leer"];
+      return ["Brustbieter", "Adlerauge", "Steinträger"];
     case 963:
-      return ["Gladimperio", "Leer", "Leer"];
+      return ["Aquahülle", "Wassertempo", "Hydration"];
     case 964:
-      return ["Relluk", "Leer", "Leer"];
+      return ["Superwechsel", "Wassertempo", "Siegeswille"];
     case 965:
-      return ["Bailonda", "Leer", "Leer"];
+      return ["Partikelschutz", "Filter", "Temposchub"];
     case 966:
-      return ["Lextremo", "Leer", "Leer"];
+      return ["Partikelschutz", "Filter", "Temposchub"];
     case 967:
-      return ["Maskagato", "Leer", "Leer"];
+      return ["Expidermis", "Belebekraft", "Drachenkiefer"];
     case 968:
-      return ["Meteno", "Leer", "Leer"];
+      return ["Bodenschmaus", "Sandschleier", "Sandscharrer"];
     case 969:
-      return ["Meteno", "Leer", "Leer"];
+      return ["Giftbelag", "Korrosion", "Schwebe"];
     case 970:
-      return ["Mopex", "Leer", "Leer"];
+      return ["Giftbelag", "Korrosion", "Schwebe"];
     case 971:
-      return ["Mopex", "Leer", "Leer"];
+      return ["Erleuchtung", "Flauschigkeit", "Tastfluch"];
     case 972:
-      return ["Tandemaus", "Leer", "Leer"];
+      return ["Sandscharrer", "Flauschigkeit", "Tastfluch"];
     case 973:
-      return ["Maushold", "Leer", "Leer"];
+      return ["Rauflust", "Taumelschritt", "Synchroauftritt"];
     case 974:
-      return ["Wampitz", "Leer", "Leer"];
+      return ["Speckschicht", "Schneemantel", "Rohe Gewalt"];
     case 975:
-      return ["Wampitz", "Leer", "Leer"];
+      return ["Speckschicht", "Schneemantel", "Rohe Gewalt"];
     case 976:
-      return ["Magnezone", "Leer", "Leer"];
+      return ["Überbrücking", "Scharfkantig", "Wassertempo"];
     case 977:
-      return ["Magnezone", "Leer", "Leer"];
+      return ["Unkenntnis", "Dösigkeit", "Aquahülle"];
     case 978:
-      return ["Eisenhand", "Leer", "Leer"];
+      return ["Kommandant", "Sturmsog", "Wassertempo"];
     case 979:
-      return ["Eisenhand", "Leer", "Leer"];
+      return ["Wunterkeit", "Kurzschluss", "Wutausbruch"];
     case 980:
-      return ["Rotom", "Leer", "Leer"];
+      return ["Giftdorn", "H2O-Absorber", "Unkenntnis"];
     case 981:
-      return ["Rotom", "Leer", "Leer"];
+      return ["Wiederkäuer", "Schweifrüstung", "Vegetarier"];
     case 982:
-      return ["Metagross", "Leer", "Leer"];
+      return ["Edelmut", "Angsthase", "Hasenfuß"];
     case 983:
-      return ["Metagross", "Leer", "Leer"];
+      return ["Siegeswille", "Feldherr", "Erzwinger"];
     case 984:
-      return ["Eisenhand", "Leer", "Leer"];
+      return ["Paläosynthese", "Robustheit", "Speckschicht"];
     case 985:
-      return ["Eisenvalor", "Leer", "Leer"];
+      return ["Paläosynthese", "Punk Rock", "Charmebolzen"];
     case 986:
-      return ["Hydrapfel", "Leer", "Leer"];
+      return ["Paläosynthese", "Sporenwirt", "Belebekraft"];
     case 987:
-      return ["Riesenzahn", "Leer", "Leer"];
+      return ["Paläosynthese", "Schwebe", "Rastlose Seele"];
     case 988:
-      return ["Nigrimar", "Leer", "Leer"];
+      return ["Paläosynthese", "Dürre", "Facettenauge"];
     case 989:
-      return ["Dedenne", "Leer", "Leer"];
+      return ["Paläosynthese", "Magnetfalle", "Robustheit"];
     case 990:
-      return ["Dedenne", "Leer", "Leer"];
+      return ["Quantenantrieb", "Robustheit", "Rasanz"];
     case 991:
-      return ["Pachirisu", "Leer", "Leer"];
+      return ["Quantenantrieb", "Übereifer", "Insomnia"];
     case 992:
-      return ["Pachirisu", "Leer", "Leer"];
+      return ["Quantenantrieb", "Adrenalin", "Rohe Gewalt"];
     case 993:
-      return ["Knilz", "Leer", "Leer"];
+      return ["Quantenantrieb", "Bedroher", "Anspannung"];
     case 994:
-      return ["Knilz", "Leer", "Leer"];
+      return ["Quantenantrieb", "Schwebe", "Dürre"];
     case 995:
-      return ["Cosmog", "Leer", "Leer"];
+      return ["Quantenantrieb", "Robustheit", "Sandsturm"];
     case 996:
-      return ["Cosmovum", "Leer", "Leer"];
+      return ["Thermowandel", "Eishaut", "Frostschicht"];
     case 997:
-      return ["Solgaleo", "Leer", "Leer"];
+      return ["Thermowandel", "Eishaut", "Scharfkantig"];
     case 998:
-      return ["Lunala", "Leer", "Leer"];
+      return ["Thermowandel", "Eishaut", "Scharfkantig"];
     case 999:
-      return ["Necrozma", "Leer", "Leer"];
+      return ["Hasenfuß", "Angsthase", "Mitnahme"];
     case 1000:
-      return ["Guzzlord", "Leer", "Leer"];
+      return ["Goldkörper", "Mitnahme", "Majestät"];
     case 1001:
-      return ["Masskito", "Leer", "Leer"];
+      return ["Unheilstafeln", "Viskosität", "Kloakensoße"];
     case 1002:
-      return ["Anego", "Leer", "Leer"];
+      return ["Unheilsschwert", "Scharfkantig", "Eishaut"];
     case 1003:
-      return ["Anego", "Leer", "Leer"];
+      return ["Unheilsgefäß", "Erzwinger", "Rohe Gewalt"];
     case 1004:
-      return ["Kopplosio", "Leer", "Leer"];
+      return ["Unheilsjuwelen", "Schwebe", "Flammkörper"];
     case 1005:
-      return ["Katagami", "Leer", "Leer"];
+      return ["Paläosynthese", "Schwebe", "Drachenkiefer"];
     case 1006:
-      return ["Voltriant", "Leer", "Leer"];
+      return ["Quantenantrieb", "Siegeswille", "Scharfkantig"];
     case 1007:
-      return ["Schlingking", "Leer", "Leer"];
+      return ["Orichalkum-Puls", "Rasanz", "Paläosynthese"];
     case 1008:
-      return ["Archaludon", "Leer", "Leer"];
+      return ["Hadronen-Motor", "Rasanz", "Schwebe"];
     case 1009:
-      return ["Hydrapfel", "Leer", "Leer"];
+      return ["Paläosynthese", "Hydration", "Bedroher"];
     case 1010:
-      return ["Eisenfalke", "Leer", "Leer"];
+      return ["Quantenantrieb", "Scharfkantig", "Redlichkeit"];
     case 1011:
-      return ["Eisenfalter", "Leer", "Leer"];
+      return ["Süßer Nektar", "Völlerei", "Klebekörper"];
     case 1012:
-      return ["Eisenbündel", "Leer", "Leer"];
+      return ["Gastlichkeit", "Hitzeschutz", "Tastfluch"];
     case 1013:
-      return ["Eisenkrieger", "Leer", "Leer"];
+      return ["Gastlichkeit", "Hitzeschutz", "Tastfluch"];
     case 1014:
-      return ["Hydragoon", "Leer", "Leer"];
+      return ["Giftkette", "Wachhund", "Rohe Gewalt"];
     case 1015:
-      return ["Kapdracon", "Leer", "Leer"];
+      return ["Giftkette", "Schnüffler", "Vorahnung"];
     case 1016:
-      return ["Pescragon", "Leer", "Leer"];
+      return ["Giftkette", "Techniker", "Hochmut"];
     case 1017:
-      return ["Meteno", "Leer", "Leer"];
+      return ["Siegeswille", "Überbrückung", "Robustheit"];
     case 1018:
-      return ["Lectragon", "Leer", "Leer"];
+      return ["Zähigkeit", "Stahlrückgrat", "Robustheit"];
     case 1019:
-      return ["Lectragon", "Leer", "Leer"];
+      return ["Süßer Nektar", "Belebekraft", "Klebekörper"];
     case 1020:
-      return ["Eisenbündel", "Leer", "Leer"];
+      return ["Paläosynthese", "Bedroher", "Magmapanzer"];
     case 1021:
-      return ["Eisenbündel", "Leer", "Leer"];
+      return ["Paläosynthese", "Blitzfänger", "Voltabsorber"];
     case 1022:
-      return ["Koraidon", "Leer", "Leer"];
+      return ["Quantenantrieb", "Rohe Gewalt", "Scharfkantig"];
     case 1023:
-      return ["Miraidon", "Leer", "Leer"];
+      return ["Quantenantrieb", "Redlichkeit", "Scharfkantig"];
     case 1024:
-      return ["Archaludon", "Leer", "Leer"];
+      return ["Tera-Wandel", "Tera-Panzer", "Teraforming Null"];
     case 1025:
-      return ["Infamomo", "Leer", "Leer"];
+      return ["Giftpuppenspiel", "Giftbelag", "Giftdorn"];
+
+      
+    case 10001:
+      return["Erzwinger", "Schwebe", "Synchro"];
+    case 10002:
+      return["Erzwinger", "Schwebe", "Synchro"];
+    case 10003:
+      return["Erzwinger", "Schwebe", "Synchro"];
+    case 10004:
+      return ["Vorahnung", "Partikelschutz", "Sandschleier"];
+    case 10005:
+      return ["Vorahnung", "Partikelschutz", "Robustheit"];
+    case 10006:
+      return ["Innere Kraft", "Edelmut", "Reiche Ernte"];
+    case 10007:
+      return ["Erzwinger", "Anspannung", "Schwebe"];
+    case 10008:
+      return ["Hitzewahn", "Schwebe", "Flammkörper"];
+    case 10009:
+      return ["Hydration", "Schwebe", "H2O-Absorber"];
+    case 10010:
+      return ["Frostschicht", "Schwebe", "Immunität"];
+    case 10011:
+      return ["Windkraft", "Schwebe", "Blitzableiter"];
+    case 10012:
+      return ["Vegetarier", "Schwebe", "Scharfkantig"];
+    case 10013:
+      return ["Prognose", "Schwebe", "Flammkörper"];
+    case 10014:
+      return ["Prognose", "Schwebe", "Regengenuss"];
+    case 10015:
+      return ["Prognose", "Schwebe", "Eishaut"];
+    case 10016:
+      return ["Achtlos", "Wassertempo", "Hasenfuß"];
+    case 10017:
+      return ["Felskern", "Trance-Modus", "Robustheit"];
+    case 10018:
+      return ["Edelmut", "Tänzer", "Plätscherstimme"];
+    case 10019:
+      return ["Erzwinger", "Siegeswille", "Belebekraft"];
+    case 10020:
+      return ["Erzwinger", "Siegeswille", "Voltabsorber"];
+    case 10021:
+      return ["Erzwinger", "Siegeswille", "Bedroher"];
+    case 10022:
+      return ["Erzwinger", "Eishaut", "Teravolt"];
+    case 10023:
+      return ["Erzwinger", "Eishaut", "Teravolt"];
+    case 10024:
+      return ["Redlichkeit", "Scharfkantig", "Reitgespann"];
+    case 10025:
+      return ["Unbeugsamkeit", "Vorahnung", "Vorwarnung"];
+    case 10026:
+      return ["Schildlos", "Scharfkantig", "Taktikwechsel"];
+    case 10027:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10028:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10029:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10030:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10031:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10032:
+      return ["Reiche Ernte", "Insomnia", "Anspannung"];
+    case 10033:
+      return["Notdünger", "Speckschicht", "Pflanzengabe"];
+    case 10034:
+      return["Großbrand", "Solarkraft", "Krallenwucht"];
+    case 10035:
+      return["Großbrand", "Solarkraft", "Dürre"];
+    case 10036:
+      return["Sturzbach", "Megawumme", "Wassertempo"];
+    case 10037:
+      return["Geistiges Auge", "Magieschild", "Erfassen"];
+    case 10038:
+      return["Wegsperre", "Bedroher", "Phantomschutz"];
+    case 10039:
+      return["Frühwecker", "Rauflust", "Familienbande"];
+    case 10040:
+      return["Zenithaut", "Hochmut", "Titankiefer"];
+
+      
+    case 10041:
+      return["Bedroher", "Überbrückung", "Hochmut"];
+    case 10042:
+      return["Steinhaupt", "Krallenwucht", "Erzwinger"];
+    case 10043:
+      return["Erzwinger", "Anspannung", "Felsenfest"];
+    case 10044:
+      return["Erzwinger", "Insomnia", "Schwebe"];
+    case 10045:
+      return["Überbrückung", "Plus", "Erleuchtung"];
+    case 10046:
+      return["Hexaplaga", "Techniker", "Scherenmacht"];
+    case 10047:
+      return["Hexaplaga", "Wertelink", "Hochmut"];
+    case 10048:
+      return["Feuerfänger", "Bedroher", "Solarkraft"];
+    case 10049:
+      return["Sandsturm", "Kampfpanzer", "Anspannung"];
+    case 10050:
+      return["Eisenfaust", "Achtlos", "Temposchub"];
+    case 10051:
+      return["Synchro", "Feenschicht", "Telepathie"];
+    case 10052:
+      return["Scherenmacht", "Rohe Gewalt", "Kraftkoloss"];
+    case 10053:
+      return["Robustheit", "Filter", "Rohe Gewalt"];
+    case 10054:
+      return["Schildlos", "Telepathie", "Mentalkraft"];
+    case 10055:
+      return["Statik", "Blitzfänger", "Fellkleid"];
+    case 10056:
+      return["Schwebe", "Strolch", "Tastfluch"];
+    case 10057:
+      return["Magiespiegel", "Glückspilz", "Redlichkeit"];
+    case 10058:
+      return["Scharfkantig", "Rauhaut", "Titankiefer"];
+    case 10059:
+      return["Anpassung", "Redlichkeit", "Telepathie"];
+    case 10060:
+      return["Schneemantel", "Schneeschauer", "Eishaut"];
+    case 10061:
+      return ["Blütelhülle", "Symbiose", "Schwebe"];
+    case 10062:
+      return["Schwebe", "Magieschild", "Reitgespann"];
+    case 10063:
+      return["Schwebe", "Magieschild", "Reitgespann"];
+    case 10064:
+      return["Sturzbach", "Wassertempo", "Rohe Gewalt"];
+    case 10065:
+      return["Notdünger", "Blitzfänger", "Entlastung"];
+    case 10066:
+      return["Strolch", "Magiespiegel", "Adlerauge"];
+    case 10067:
+      return["Innere Kraft", "Flauschigkeit", "Feenschicht"];
+    case 10068:
+      return["Scharfkantig", "Redlichkeit", "Konzentrator"];
+    case 10069:
+      return ["Heilherz", "Belebekraft", "Edelmut"];
+    case 10070:
+      return["Wassertempo", "Titankiefer", "Temposchub"];
+    case 10071:
+      return["Dösigkeit", "Panzerhaut", "Belebekraft"];
+    case 10072:
+      return["Robustheit", "Sandscharrer", "Rohe Gewalt"];
+    case 10073:
+      return["Adlerauge", "Schildlos", "Taumelschritt"];
+    case 10074:
+      return["Titankiefer", "Eishaut", "Frostschicht"];
+    case 10075:
+      return ["Neutraltorso", "Schwebe", "Magiespiegel"];
+
+      
+    case 10076:
+      return["Neutraltorso", "Leichtmetall", "Krallenwucht"];
+    case 10077:
+      return["Urmeer", "Erzwinger", "Aquahülle"];
+    case 10078:
+      return["Endland", "Erzwinger", "Solarkraft"];
+    case 10079:
+      return["Delta-Wind", "Erzwinger", "Zenithaut"];
+    case 10080:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10081:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10082:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10083:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10084:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10085:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10086:
+      return ["Zauberer", "Schwebe", "Erzwinger"];
+    case 10087:
+      return["Rohe Gewalt", "Kurzschluss", "Magmapanzer"];
+    case 10088:
+      return["Charmebolzen", "Rauflust", "Flexibilität"];
+    case 10089:
+      return["Zenithaut", "Hochmut", "Orkanschwingen"];
+    case 10090:
+      return["Anpassung", "Superschütze", "Facettenauge"];
+    case 10091:
+      return["Übereifer", "Speckschicht", "Völlerei"];
+    case 10092:
+      return["Übereifer", "Speckschicht", "Völlerei"];
+    case 10093:
+      return["Übereifer", "Speckschicht", "Völlerei"];
+    case 10094:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10095:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10096:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10097:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10098:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10099:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10100:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10101:
+      return["Schneescharrer", "Schneemantel", "Panzerhaut"];
+    case 10102:
+      return["Schneescharrer", "Schneemantel", "Panzerhaut"];
+    case 10103:
+      return ["Schneemantel", "Schneeschauer", "Fellkleid"];
+    case 10104:
+      return ["Schneemantel", "Schneeschauer", "Fellkleid"];
+    case 10105:
+      return["Sandschleier", "Sandscharrer", "Lockenkopf"];
+    case 10106:
+      return["Sandschleier", "Sandscharrer", "Lockenkopf"];
+    case 10107:
+      return["Mitnahme", "Techniker", "Hasenfuß"];
+    case 10108:
+      return["Fellkleid", "Techniker", "Hasenfuß"];
+    case 10109:
+      return ["Magnetfalle", "Robustheit", "Elektrohaut"];
+    case 10110:
+      return ["Magnetfalle", "Robustheit", "Elektrohaut"];
+    case 10111:
+      return ["Magnetfalle", "Robustheit", "Elektrohaut"];
+    case 10112:
+      return ["Duftnote", "Giftgriff", "Chemiekraft"];
+    case 10113:
+      return ["Duftnote", "Giftgriff", "Chemiekraft"];
+    case 10114:
+      return ["Chlorophyll", "Schnüffler", "Reiche Ernte"];
+    case 10115:
+      return ["Steinhaupt", "Blitzfänger", "Tänzer"];
+    case 10116:
+      return ["Sturzbach", "Wandlungskunst", "Freundschaftsakt"];
+    case 10117:
+      return ["Sturzbach", "Wandlungskunst", "Freundschaftsakt"];
+    case 10118:
+      return ["Aura-Umkehr", "Scharwandel", "Erzwinger"];
+    case 10119:
+      return ["Aura-Umkehr", "Scharwandel", "Erzwinger"];
+    case 10120:
+      return ["Aura-Umkehr", "Bedroher", "Erzwinger"];
+    case 10121:
+      return ["Beschattung", "Titankiefer", "Anpassung"];
+    case 10122:
+      return ["Hexaplaga", "Schwebe", "Batterie"];
+    case 10123:
+      return ["Tänzer", "Adlerauge", "Taumelschritt"];
+    case 10124:
+      return ["Tänzer", "Adlerauge", "Taumelschritt"];
+    case 10125:
+      return ["Tänzer", "Adlerauge", "Taumelschritt"];
+    case 10126:
+      return ["Adlerauge", "Schildlos", "Munterkeit"];
+    case 10127:
+      return ["Fischschwarm", "Wassertempo", "Bedroher"];
+    case 10128:
+      return ["Floraschild", "Umkehrung", "Chlorophyll"];
+    case 10129:
+      return ["Korrosion", "Dösigkeit", "Rivalität"];
+    case 10130:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10131:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10132:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10133:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10134:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10135:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10136:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10137:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10138:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10139:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10140:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10141:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10142:
+      return ["Limitschild", "Felskern", "Bruchrüstung"];
+    case 10143:
+      return ["Kostümspuk", "Bedroher", "Tastfluch"];
+    case 10144:
+      return ["Kostümspuk", "Bedroher", "Tastfluch"];
+    case 10145:
+      return ["Kostümspuk", "Bedroher", "Tastfluch"];
+    case 10146:
+      return ["Kugelsicher", "Lärmschutz", "Partikelschutz"];
+    case 10147:
+      return ["Seelenherz", "Robustheit", "Feenschicht"];
+    case 10148:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10149:
+      return ["Steinhaupt", "Blitzfänger", "Tänzer"];
+    case 10150:
+      return ["Schwebe", "Puderabwehr", "Honigmaul"];
+    case 10151:
+      return ["Felsenfest", "Gleichmut", "Wachhund"];
+    case 10152:
+      return ["Felsenfest", "Munterkeit", "Krallenwucht"];
+    case 10153:
+      return ["Wasserblase", "H2O-Absorber", "Heilherz"];
+    case 10154:
+      return ["Eisenstachel", "Blitzfänger", "Robustheit"];
+    case 10155:
+      return ["Prismarüstung", "Erzwinger", "Metallprotektor"];
+    case 10156:
+      return ["Prismarüstung", "Erzwinger", "Phantomschutz"];
+    case 10157:
+      return ["Prismarüstung", "Erzwinger", "Zerebralmacht"];
+    case 10158:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10159:
+      return["Anpassung", "Angsthase", "Vorahnung"];
+    case 10160:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10161:
+      return ["Mitnahme", "Krallenwucht", "Anspannung"];
+    case 10162:
+      return ["Angsthase", "Pastellhülle", "Vorahnung"];
+    case 10163:
+      return ["Reitgespann", "Pastellhülle", "Vorahnung"];
+    case 10164:
+      return ["Völlerei", "Gleichmut", "Belebekraft"];
+    case 10165:
+      return ["Schnellschuss", "Gleichmut", "Belebekraft"];
+    case 10166:
+      return ["Adlerauge", "Felsenfest", "Rauflust"];
+    case 10167:
+      return ["Schwebe", "Reaktionsgas", "Nebel-Erzeuger"];
+    case 10168:
+      return ["Munterkeit", "Hemmungslos", "Eishaut"];
+    case 10169:
+      return ["Erzwinger", "Schneemantel", "Unbeugsamkeit"];
+    case 10170:
+      return ["Erzwinger", "Blitzfänger", "Siegeswille"];
+    case 10171:
+      return ["Erzwinger", "Flammkörper", "Wutausbruch"];
+    case 10172:
+      return ["Kuriose Arznei", "Gleichmut", "Belebekraft"];
+    case 10173:
+      return ["Übereifer", "Bruchrüstung", "Tastfluch"];
+    case 10174:
+      return ["Mitnahme", "Völlerei", "Rasanz"];
+    case 10175:
+      return ["Mitnahme", "Völlerei", "Rasanz"];
+    case 10176:
+      return ["Übereifer", "Konzentrator", "Rasanz"];
+    case 10177:
+      return ["Rohe Gewalt", "Affenfokus", "Trance-Modus"];
+    case 10178:
+      return ["Eishaut", "Telepathie", "Trance-Modus"];
+    case 10179:
+      return ["Mumia", "Rastlose Seele", "Schwebe"];
+    case 10180:
+      return ["Mimese", "Titankiefer", "Flexibilität"];
+    case 10181:
+      return ["Aura-Umkehr", "Scharwandel", "Erzwinger"];
+    case 10182:
+      return ["Würggeschoss", "Adlerauge", "Brustbieter"];
+    case 10183:
+      return ["Würggeschoss", "Adlerauge", "Brustbieter"];
+    case 10184:
+      return ["Punk Rock", "Techniker", "Minus"];
+    case 10185:
+      return ["Wassertempo", "Eishaut", "Frostschicht"];
+    case 10186:
+      return ["Synchro", "Psycho-Erzeuger", "Gleichmut"];
+    case 10187:
+      return ["Heißhunger", "Backentaschen", "Statik"];
+    case 10188:
+      return ["Kühnes Schwert", "Erzwinger", "Redlichkeit"];
+    case 10189:
+      return ["Wackerer Schild", "Erzwinger", "Redlichkeit"];
+    case 10190:
+      return ["Erzwinger", "Schwebe", "Bedroher"];
+    case 10191:
+      return ["Verborgene Faust", "Techniker", "Eisenfaust"];
+    case 10192:
+      return ["Floraschild", "Krallenwucht", "Rohe Gewalt"];
+    case 10193:
+      return ["Anspannung", "Reitgespann", "Majestät"];
+    case 10194:
+      return ["Anspannung", "Reitgespann", "Majestät"];
+    case 10195:
+      return["Notdünger", "Chlorophyll", "Pflanzengabe"];
+    case 10196:
+      return["Großbrand", "Solarkraft", "Feuerfänger"];
+    case 10197:
+      return["Sturzbach", "Regengenuss", "Wassertempo"];
+    case 10198:
+      return ["Facettenauge", "Aufwertung", "Hexaplaga"];
+    case 10199:
+      return["Statik", "Blitzfänger", "Backentaschen"];
+    case 10200:
+      return ["Mitnahme", "Techniker", "Krallenwucht"];
+    case 10201:
+      return ["Adrenalin", "Schildlos", "Kraftkoloss"];
+    case 10202:
+      return ["Schwebe", "Bedroher", "Phantomschutz"];
+    case 10203:
+      return ["Scherenmacht", "Panzerhaut", "Rohe Gewalt"];
+    case 10204:
+      return ["Speckschicht", "Panzerhaut", "Hydration"];
+    case 10205:
+      return ["Anpassung", "Angsthase", "Verahnung"];
+    case 10206:
+      return ["Immunität", "Speckschicht", "Völlerei"];
+    case 10207:
+      return ["Duftnote", "Bruchrüstung", "Finalschlag"];
+    case 10208:
+      return ["Magnetfalle", "Eisenfaust", "Robustheit"];
+    case 10209:
+      return ["Notdünger", "Gras-Erzeuger", "Eisenfaust"];
+    case 10210:
+      return ["Großbrand", "Libero", "Temposchub"];
+    case 10211:
+      return ["Sturzbach", "Superschütze", "Hydration"];
+    case 10212:
+      return ["Adlerauge", "Anspannung", "Spiegelrüstung"];
+    case 10213:
+      return ["Hexaplaga", "Schnüffler", "Telepathie"];
+    case 10214:
+      return ["Titankiefer", "Panzerhaut", "Wassertempo"];
+    case 10215:
+      return ["Dampantrieb", "Feuerfänger", "Feuerfänger"];
+    case 10216:
+      return ["Heranreifen", "Völlerei", "Übereifer"];
+    case 10217:
+      return ["Heranreifen", "Völlerei", "Speckschicht"];
+    case 10218:
+      return ["Sandspeier", "Expidermis", "Sandschleier"];
+    case 10219:
+      return ["Punk Rock", "Techniker", "Plus"];
+    case 10220:
+      return ["Feuerfänger", "Pulverrauch", "Flammkörper"];
+    case 10221:
+      return ["Heilherz", "Vorahnung", "Magiespiegel"];
+    case 10222:
+      return ["Strolch", "Schnüffler", "Langfinger"];
+    case 10223:
+      return ["Zuckerhülle", "Dufthülle", "Heilherz"];
+    case 10224:
+      return ["Rohe Gewalt", "Schwermetall", "Robustheit"];
+    case 10225:
+      return ["Leichtmetall", "Stahlrückgrat", "Robustheit"];
+    case 10226:
+      return ["Verborgene Faust", "Techniker", "Eisenfaust"];
+    case 10227:
+      return ["Verborgene Faust", "Techniker", "Eisenfaust"];
+    case 10228:
+      return ["Punk Rock", "Techniker", "Minus"];
+    case 10229:
+      return ["Feuerfänger", "Wachhund", "Steinhaupt"];
+    case 10230:
+      return ["Feuerfänger", "Wachhund", "Steinhaupt"];
+    case 10231:
+      return ["Lärmschutz", "Statik", "Finalschlag"];
+    case 10232:
+      return ["Lärmschutz", "Statik", "Finalschlag"];
+    case 10233:
+      return ["Großbrand", "Feuerfänger", "Schnüffler"];
+    case 10234:
+      return ["Giftdorn", "Wassertempo", "Bedroher"];
+    case 10235:
+      return ["Adlerauge", "Giftgriff", "Langfinger"];
+    case 10236:
+      return ["Sturzbach", "Panzerhaut", "Scharfkantig"];
+    case 10237:
+      return ["Chlorophyll", "Übereifer", "Floraschild"];
+    case 10238:
+      return ["Trugbild", "Adrenalin", "Strolch"];
+    case 10239:
+      return ["Trugbild", "Adrenalin", "Strolch"];
+    case 10240:
+      return ["Rohe Gewalt", "Siegeswille", "Aufwertung"];
+    case 10241:
+      return ["Vegetarier", "Panzerhaut", "Viskosität"];
+    case 10242:
+      return ["Vegetarier", "Panzerhaut", "Viskosität"];
+    case 10243:
+      return ["Titankiefer", "Eishaut", "Robustheit"];
+    case 10244:
+      return ["Notdünger", "Langstrecke", "Rauflust"];
+    case 10245:
+      return["Erzwinger", "Bedroher", "Zeitspiel"];
+    case 10246:
+      return["Erzwinger", "Bedroher", "Anspannung"];
+    case 10247:
+      return ["Achtlos", "Wassertempo", "Hasenfuß"];
+    case 10248:
+      return ["Wassertempo", "Anspannung", "Überbrückung"];
+    case 10249:
+      return ["Heilherz", "Charmebolzen", "Partikelschutz"];
+    case 10250:
+      return ["Bedroher", "Kurzschluss", "Wiederkäuer"];
+    case 10251:
+      return ["Bedroher", "Kurzschluss", "Wiederkäuer"];
+    case 10252:
+      return ["Bedroher", "Kurzschluss", "Wiederkäuer"];
+    case 10253:
+      return ["Giftdorn", "H2O-Absorber", "Unkenntnis"];
+    case 10254:
+      return ["Dufthülle", "Völlerei", "Speckschicht"];
+    case 10255:
+      return ["Edelmut", "Angsthase", "Hasenfuß"];
+    case 10256:
+      return ["Superwechsel", "Wassertempo", "Siegeswille"];
+    case 10257:
+      return ["Backentaschen", "Techniker", "Freundeshut"];
+    case 10258:
+      return ["Kommandant", "Sturmsog", "Wassertempo"];
+    case 10259:
+      return ["Kommandant", "Sturmsog", "Wassertempo"];
+    case 10260:
+      return ["Bedroher", "Übereifer", "Rohe Gewalt"];
+    case 10261:
+      return ["Bedroher", "Übereifer", "Rohe Gewalt"];
+    case 10262:
+      return ["Bedroher", "Übereifer", "Rohe Gewalt"];
+    case 10263:
+      return ["Hasenfuß", "Angsthase", "Mitnahme"];
+    case 10264:
+      return ["Orichalkum-Puls", "Rasanz", "Paläosynthese"];
+    case 10265:
+      return ["Orichalkum-Puls", "Rasanz", "Paläosynthese"];
+    case 10266:
+      return ["Orichalkum-Puls", "Rasanz", "Paläosynthese"];
+    case 10267:
+      return ["Orichalkum-Puls", "Rasanz", "Paläosynthese"];
+    case 10268:
+      return ["Hadronen-Motor", "Rasanz", "Schwebe"];
+    case 10269:
+      return ["Hadronen-Motor", "Rasanz", "Schwebe"];
+    case 10270:
+      return ["Hadronen-Motor", "Rasanz", "Schwebe"];
+    case 10271:
+      return ["Hadronen-Motor", "Rasanz", "Schwebe"];
+    case 10272:
+      return ["Adrenalin", "Geistiges Auge", "Kugelsicher"];
+    case 10273:
+      return ["Siegeswille", "Überbrückung", "Robustheit"];
+    case 10274:
+      return ["Siegeswille", "Überbrückung", "Robustheit"];
+    case 10275:
+      return ["Siegeswille", "Überbrückung", "Robustheit"];
+    case 10276:
+      return ["Tera-Wandel", "Tera-Panzer", "Teraforming Null"];
+    case 10277:
+      return ["Tera-Wandel", "Tera-Panzer", "Teraforming Null"];
+    
     default:
       // Standardfall für nicht erfasste IDs
       return [`Pokemon ${pokemonID}`, "Leer", "Leer"];
@@ -2568,14 +3127,14 @@ function getAbilityDescription(Name){
     case "Aura-Umkehr":
         return "In der Nähe des Pokemon fühlen sich gute Lebewesen gezwungen, bösartig zu handeln, und böse, gutartig zu handeln.";
 
-    case "Auswegslos":
+    case "Ausweglos":
         return "Wenn ein Ziel versucht, sich aus der Nahkampf-Reichweite des Pokemon zu bewegen, kann das Pokemon sofort eine Nahkampf-Attacke als zusätzliche Aktion gegen es ausführen.";
 
     case "Backentaschen":
         return "Das Pokemon kann zwei Items gleichzeitig tragen, solange beide in je eine Backentasche passen.";
 
     case "Batterie":
-        return "Immer, wenn das Pokemon eine Elektro-Attacke einsetzt: Es und andere Elektro-Pokemon in der Nähe erhalten +LV SP ANG.";
+        return "Immer, wenn das Pokemon eine Elektro-Attacke einsetzt: Es und andere Elektro-Pokemon in der Nähe (0.5xLV Meter) erhalten +LV SP ANG.";
 
     case "Bedroher":
         return "Wenn Gegner das Pokemon wahrnehmen: Es kann eine Einschüchtern-Probe würfeln. Bei Erfolg: Die Gegner verlieren LV ANG.";
@@ -3136,7 +3695,7 @@ function getAbilityDescription(Name){
         return "Fallen die KP des Pokemon unter 50%, nimmt es seine ultimative Form an.";
 
     case "Scherenmacht":
-        return "Der ANG-Wert des Pokemon kann niemals senken, weder durch gegnerische Attacken/Effekte noch durch eigene.";
+        return "Der ANG-Wert des Pokemon kann niemals sinken, weder durch gegnerische Attacken/Effekte noch durch eigene.";
 
     case "Schildlos":
         return "Alle Attacken des Pokemon und die gegen das Pokemon eingesetzt werden treffen es immer, unabhängig von der GENA-Probe.";
@@ -3196,7 +3755,7 @@ function getAbilityDescription(Name){
         return "Immer, wenn das Pokemon Schaden nimmt, stößt es schädliche Sporen ab. Alle Ziele in Nahkampfreichweite müssen dann eine Widerstand-Probe bestehen oder werden zufällig mit Paralyse, Schlaf oder Gift belegt.";
 
     case "Stählerner Wille":
-        return "Die Statuswerte des Pokemon können nicht verringert werden.";
+        return "Die Statuswerte des Pokemon können nicht durch gegnerische Effekte verringert werden.";
 
     case "Stahlprofi":
         return "Das Pokemon kennt sich hervorragend mit Metall aus. Seine Stahl-Attacken richten 50% mehr Schaden an.";
@@ -3292,7 +3851,7 @@ function getAbilityDescription(Name){
         return "Das Pokemon kann extrem stark beißen. Seine Biss-Attacken richten 50% mehr Schaden an.";
 
     case "Tollpatsch":
-        return "Immer, wenn das Pokemon patzt, erhält es einen Glücks-Token.";
+        return "Immer, wenn das Pokemon patzt, erhält es einen Glücks-Token. Es kann maximal so viele haben wie sein GL-Wert.";
 
     case "Trance-Modus":
         return "Das Pokemon kann zwischen zwei Formen wechseln.";
@@ -3443,7 +4002,7 @@ function getAbilityDescription(Name){
 
     case "Zuckerhülle":
         return "Das Pokemon riecht extrem süß. Ziele in der Nähe wachen sofort auf und können nicht einschlafen, da der Geruch zu penetrant ist. Es kann sich niemals verstecken.";
-    }
+  }
 }
 
 window.getAbilities = getAbilities;
